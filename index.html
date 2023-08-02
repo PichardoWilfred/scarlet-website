@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" type="image/svg+xml" href="/img/nav-bar-logo.svg">
+		<meta name="generator" content="Astro v2.8.2">
+		<title>Scarlett</title>
+		<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/scarlet-website/_astro/index.d55feaa3.css" /><script type="module">function s(e,t,i){return new Promise(o=>{const r=document.querySelector("span#red-dot");let n=0;const c=document.querySelector(`#${t}`);let a=setInterval(()=>{n<e.length?(c.innerHTML+=e.charAt(n),n++):(t==="third-line"&&r.classList.toggle("hidden"),clearInterval(a),o(1e3))},i)})}function d(){return new Promise(e=>{const t=window.matchMedia("(min-width: 1024px)").matches?"":"-mobile",i=document.querySelector(`h4#direction${t}`);i.classList.add("slided"),i.addEventListener("animationend",()=>{e(1e3)})})}function l(){const e=document.querySelector("img#prisma");e.classList.add("show"),setTimeout(()=>{e.classList.remove("show"),e.classList.add("float")},950)}function u(){document.querySelector("#neo-bg").classList.add("slide-up")}(async function(){await s("Change The","first-line",80),await d(),u(),l(),await s("Of Your","second-line",80),await s("Bussiness","third-line",80),document.querySelector("#description").classList.add("show")})();
+</script></head>
+	<body>
+		<header class="bg-black sticky top-0 left-0 font-epilogue z-50 astro-5BLMO7YK">
+        <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white astro-5BLMO7YK">
+            <img src="/img/nav-bar-logo.svg" class="w-[25px] lg:w-[40px] object-contain astro-5BLMO7YK">
+            <ul class="hidden lg:flex justify-center unstyled astro-5BLMO7YK">
+                <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
+                    after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
+                    hover:after:w-full hover:cursor-pointer astro-5BLMO7YK">
+                    About Us
+                </li><li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
+                    after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
+                    hover:after:w-full hover:cursor-pointer astro-5BLMO7YK">
+                    Service
+                </li><li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
+                    after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
+                    hover:after:w-full hover:cursor-pointer astro-5BLMO7YK">
+                    Latest Work
+                </li><li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
+                    after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
+                    hover:after:w-full hover:cursor-pointer astro-5BLMO7YK">
+                    Testimonials
+                </li>
+            </ul>
+            <button class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md uppercase astro-5BLMO7YK">
+                Contact Us
+            </button>
+            <button id="toggle-navigation" type="button" class="flex lg:hidden astro-5BLMO7YK">
+                <img src="/img/menu.svg" class="cursor-pointer w-[35px] object-contain astro-5BLMO7YK">
+            </button>
+        </nav>
+        <div id="mobile-menu" class="fixed hidden justify-end w-screen h-screen z-40 astro-5BLMO7YK">
+            <div class="absolute top-0 left-0 w-full h-full bg-[#090909d0] astro-5BLMO7YK"></div>
+            <ul class="mobile-menu flex flex-col z-50 min-w-[30%] w-[50vw] bg-black border-t border-t-black-100 astro-5BLMO7YK">
+                <li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100 astro-5BLMO7YK">About Us</li><li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100 astro-5BLMO7YK">Service</li><li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100 astro-5BLMO7YK">Latest Work</li><li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100 astro-5BLMO7YK">Testimonials</li><li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100 astro-5BLMO7YK">contact us</li>
+            </ul>
+        </div>
+    </header>
+    <script lang="js">
+        let nav = false;
+        function toggleNav() {
+            nav = !nav;
+            const mobile_menu = document.querySelector("#mobile-menu");
+            const menu = mobile_menu.querySelector("ul");
+
+            mobile_menu.classList[!nav ? 'remove':'add']('flex');
+            menu.classList.toggle('slide-in');
+            mobile_menu.classList[ nav ? 'remove':'add']('hidden');
+
+            document.body.classList.toggle('overflow-y-hidden');
+        }
+        const toggle_navigation = document.querySelector("#toggle-navigation");
+        toggle_navigation.addEventListener("click", toggleNav);
+    </script>
+		
+	<main class="astro-J7PV25F6">
+		<section class="portrait h-screen bg-black">
+    <!-- <button id="trigger-animation" class="font-epilogue text-lg text-white bg-red-100 rounded px-6 py-3">
+        Animate
+    </button> -->
+    <div class="flex max-md:flex-col overflow-hidden justify-around bg-black text-white font-epilogue md:h-[89.5vh]">
+        <div class="relative flex max-md:px-6 max-md:mt-[1.8rem] max-md:justify-center z-20">
+            <div class="sm:min-w-[380px] xl:min-w-[640px] py-6 sm:py-20">
+                <h4 id="first-line" class="flex text-[10vw] sm:text-[74px] xl:text-[100px] tracking-[4px] sm:leading-[86px]"></h4>
+                <h4 id="direction-mobile" class="direction-mobile hidden max-sm:flex ease-in-out font-epilogue font-bold text-[#C1000B] text-[8vw] tracking-[10px]">
+                    DIRECTION
+                </h4>
+                <h4 id="second-line" class="text-[10vw] sm:text-[74px] xl:text-[100px] lg:min-h-[100px] xl:min-h-[200px] tracking-[4px] leading-[60px] lg:leading-[160px]"></h4>
+                <div class="flex sm:mt-4 text-[10vw] sm:text-[84px] xl:text-[110px] ">
+                    <h3 id="third-line" class="business font-extrabold transition-all"></h3>
+                    <span id="red-dot" style="color:#E40000" class="hidden">.</span>
+                </div>
+                <p id="description" class="description text font-light lg:text-lg max-w-[480px] max-sm:mb-4">
+                    Whether you're a small startup or a large enterprise, Scarlet has the tools and expertise to help you achieve your business objectives. Join us today and discover the power of Scarlet! 
+                </p>
+            </div>
+            <div class="relative">
+                <div class="absolute black-box bg-black max-lg:top-[-20%] lg:top-0 max-lg:h-[220px] lg:h-[125px] w-[160px] z-20"></div>
+                <h4 id="direction" class="direction hidden sm:flex ease-in-out font-epilogue font-bold leading-1 
+                uppercase z-10 transition text-[#C1000B] text-[40px] lg:text-[94px] tracking-[10px] [writing-mode:vertical-lr] [text-orientation:mixed] ml-2">
+                    direction
+                </h4>
+            </div>
+        </div>
+        
+        <div class="flex relative max-md:justify-center items-center md:max-w-[450px] lg:max-w-[500px] lg:h-[600px] py-10 z-10">
+            <img id="neo-bg" class="neo-background absolute md:hidden lg:flex top-[48%] left-[-80%] w-[200%] xl:w-[270%] max-w-none" src="/img/portrait/neo-ground.svg">
+            <img id="prisma" class="prisma flex max-w-[60%] sm:max-w-[300px] lg:max-w-[350px] xl:max-w-[380px]" src="/img/portrait/prisma.svg">
+        </div>
+    </div>
+</section>
+
+
+
+
+<template>
+</template>
+	</main>
+
+	</body></html>
