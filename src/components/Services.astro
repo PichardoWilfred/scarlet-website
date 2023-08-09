@@ -1,0 +1,98 @@
+---
+const services_1 = [
+    {
+        icon: 'analytics',
+        class_icon: 'w-[80px]',
+        class_name: 'max-w-[220px]',
+        name: 'Analytics & Reporting',
+        description: 'Measure, analyze, and report on marketing performance to drive informed decisions.'
+    },
+    {
+        icon: 'laptop-code',
+        class_icon: 'w-[94px]',
+        name: 'Website Design & Development',
+        description: 'Scarlett delivers captivating websites tailored to your brand and business objectives.'
+    },
+]
+const services_2 = [
+    {
+        icon: 'camera',
+        class_icon: 'w-[80px]',
+        name: 'Content Creation & Distribution',
+        description: 'Craft engaging, high-quality content and deploy it across relevant channels.'
+    },
+    {
+        icon: 'money-sign',
+        class_icon: 'w-[80px]',
+        name: 'Pay-Per-Click Advertising',
+        description: 'Maximize ad impact through strategic keyword selection and compelling copy.'
+    },
+    {
+        icon: 'social-media',
+        class_icon: 'w-[70px]',
+        class_name: 'max-w-[220px]',
+        name: 'Social Media Marketing',
+        description: 'Engage audiences and foster a thriving community on selected social platforms.'
+    },
+    {
+        icon: 'content-writting',
+        class_icon: 'w-[70px]',
+        class_name: 'max-w-[120px]',
+        name: 'Content Writing',
+        description: "Engaging and SEO-driven content that boosts your brand's online visibility and storytelling."
+    },
+]
+---
+<section class="relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden">
+    <div class="background-image absolute top-0 left-[600px] h-full w-full z-20" />
+    <div class="services-container items-center relative w-[85vw] mx-auto z-30">
+        {
+            services_1.map( ({ class_name, class_icon, name, description, icon }, index) => (
+                <div class={`service service-${index + 1}`}>
+                    <img src={`/img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <h2 class={`font-bold font-rubik text-2xl mb-2 ${class_name}`}>{ name }</h2>
+                    <p class="text-white-300 leading-1">{ description }</p>
+                </div>))
+        }
+        <div class="service-description flex flex-col justify-center grow max-w-[580px] py-8">
+            <h1 class="font-epilogue font-bold text-2xl leading-1 lg:text-[3rem] lg:leading-[3.6rem]">
+                Our Digital <br> Marketing Expertise
+            </h1>
+            <p class="text-white-200 mt-3 text-lg lg:text-xl">With Scarlett, experience unmatched expertise, tailored strategies, and a dedication to your success.</p>
+        </div>
+        {
+            services_2.map( ({ class_name, class_icon, name, description, icon }, index) => (
+                <div class={`service service-${(index + 3)}`}>
+                    <img src={`/img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <h2 class={`font-bold font-rubik text-2xl mb-2`+` `+class_name}>{ name }</h2>
+                    <p class="text-white-300 leading-1">{ description }</p>
+                </div>))
+        }
+    </div>
+</section>
+<style>
+    .services-row {
+        @apply flex flex-wrap ml-[3vw];
+    }
+    .background-image {
+        background-image: url("/img/services/background-img.svg")
+    }
+    .services-container {
+        display: grid;
+        grid-template-areas:
+        "service-1 service-2 service-description service-description"
+        "service-3 service-4 service-5 service-6";
+        column-gap: 32px;
+        row-gap: 32px;
+    }
+    .service-1 { grid-area: service-1; }
+    .service-2 { grid-area: service-2; }
+    .service-3 { grid-area: service-3; }
+    .service-description { grid-area: service-description; }
+    .service-4 { grid-area: service-4; }
+    .service-5 { grid-area: service-5; }
+    .service-6 { grid-area: service-6; }
+    .service {
+        @apply flex flex-col bg-black-200 p-8 rounded-lg max-w-[350px];
+    }
+</style>

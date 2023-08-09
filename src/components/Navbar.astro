@@ -1,0 +1,66 @@
+---
+const menu_items = ['About Us', 'Service', 'Latest Work', 'Testimonials'];
+---
+<header class="bg-black sticky top-0 left-0 font-epilogue z-50">
+    <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
+        <img src="/img/nav-bar-logo.svg" class="w-[25px] lg:w-[40px] object-contain" />
+        <ul class="hidden lg:flex justify-center unstyled">
+            { menu_items.map((title, index) => (
+                <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
+                after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
+                hover:after:w-full hover:cursor-pointer">
+                { title }
+            </li>)) }
+        </ul>
+        <button class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md">
+            Contact Us
+        </button>
+        <button id="toggle-navigation" type="button" class="flex lg:hidden">
+            <img src="/img/menu.svg" class="cursor-pointer w-[35px] object-contain" />
+        </button>
+    </nav>
+    <div id="mobile-menu" class="fixed hidden justify-end w-screen h-screen z-40">
+        <div id="mask" class="absolute top-0 left-0 w-full h-full bg-[#090909d0]" />
+        <ul class="mobile-menu flex flex-col z-50 min-w-[30%] w-[50vw] bg-black border-t border-t-black-100">
+            { [...menu_items, 'Contact Us'].map((label) => 
+            (<li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100">{label}</li>)) }
+        </ul>
+    </div>
+</header>
+<script>
+    let nav = false;
+    function toggleNav() {
+        nav = !nav;
+        const mobile_menu = document.querySelector("#mobile-menu");
+        const menu = mobile_menu.querySelector("ul");
+
+        mobile_menu.classList[!nav ? 'remove':'add']('flex');
+        menu.classList.toggle('slide-in');
+        mobile_menu.classList[ nav ? 'remove':'add']('hidden');
+
+        document.body.classList.toggle('overflow-y-hidden');
+    }
+    const toggle_navigation = document.querySelector("#toggle-navigation"); //mask
+    const mask = document.querySelector("#mask"); 
+
+    toggle_navigation.addEventListener("click", toggleNav);
+    mask.addEventListener("click", toggleNav);
+</script>
+<style>
+    .slide-in {
+        animation: slide-in 150ms ease-in-out;
+    }
+
+    @keyframes slide-in {
+        from {
+            opacity: 0;
+            transform: translateX(50%);
+        }
+        50% {
+            opacity: 1;
+        }
+        to {
+            transform: translateX(4%);
+        }
+    }
+</style>

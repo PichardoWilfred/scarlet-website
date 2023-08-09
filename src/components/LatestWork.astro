@@ -1,0 +1,37 @@
+---
+    const latest_work = [
+        {
+            name: 'Artem - Digital Marketing campaign',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-1'
+        },
+        {
+            name: 'Mayhem - Search Engine Optimization',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-2'
+        },
+        {
+            name: 'Basic - Pay Per Click (PPC)',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-3'
+        }
+    ]
+---
+<section class="min-h-[75vh] text-white bg-black px-8 lg:px-44 py-[6rem]">
+    <h1 class="font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] mb-10">
+        Our latest work
+    </h1>
+    <div class="flex max-lg:justify-center flex-wrap my-2">
+        {
+            latest_work.map(({ name, description, icon }, index) => {
+                return  (
+                    <div class="flex flex-col lg:min-w-[300px] lg:max-w-[480px] me-8 mb-8">
+                        <img src={`/img/latest-work/${icon}.png`} alt={ icon } class="rounded-xl mb-5 max-w-none" />
+                        <h2 class="flex items-center font-bold text-white text-3xl mb-4 min-h-[72px]">{ name }</h2>
+                        <p class="text-white-200 text-xl">{ description }</p>
+                    </div>
+                )
+            })
+        }
+    </div>
+</section>

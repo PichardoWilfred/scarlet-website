@@ -1,0 +1,73 @@
+
+<section class="portrait sm:h-screen flex max-lg:flex-col overflow-hidden justify-around ">
+    <div class="relative flex justify-center max-md:px-6 max-md:justify-center z-20">
+        <div class="max-sm:h-[60vh] sm:min-w-[380px] xl:min-w-[640px] py-6 sm:py-20">
+            <h4 id="first-line" class="flex text-[10vw] sm:text-[74px] xl:text-[100px] tracking-[4px] sm:leading-[86px]" />
+            <h4 id="direction-mobile" class="direction-mobile hidden max-sm:flex items-center ease-in-out font-epilogue font-bold text-red-300 tracking-[10px]" style="font-size: clamp(30px, 12vw, 60px)">
+                DIRECTION
+            </h4>
+            <h4 id="second-line" class="flex items-center text-[10vw] sm:text-[74px] xl:text-[100px] min-h-[10vw] sm:min-h-[120px] xl:min-h-[150px] tracking-[4px] leading-[60px] lg:leading-[160px]" />
+            <div class="flex max-sm:mb-3 sm:mt-4 min-h-[12vw] sm:min-h-[120px] text-[10vw] sm:text-[84px] xl:text-[110px] ">
+                <h3 id="third-line" class="business font-extrabold transition-all" />
+                <span id="red-dot" class="hidden text-red-300">.</span>
+            </div>
+            <p id="description" class="description min-h-[100px] font-light lg:text-lg max-w-[480px] max-sm:mb-4">
+                Whether you're a small startup or a large enterprise, Scarlet has the tools and expertise to help you achieve your business objectives. Join us today and discover the power of Scarlet! 
+            </p>
+        </div>
+        <div class="relative">
+            <div class="absolute black-box bg-black max-lg:top-[-20%] lg:top-0 max-lg:h-[220px] lg:h-[125px] w-[160px] z-20" />
+            <h4 id="direction" class="direction hidden sm:flex ease-in-out font-epilogue font-bold leading-1 
+            uppercase z-10 transition text-red-300 text-[82px] tracking-[10px] [writing-mode:vertical-lr] [text-orientation:mixed] ml-2">
+                direction
+            </h4>
+        </div>
+    </div>
+    <div class="flex relative justify-center items-center lg:max-w-[500px] lg:h-[600px] py-10 z-10">
+        <img id="neo-bg" class="neo-background absolute top-[60%] lg:top-[58%] lg:left-[-80%] w-[1200px] lg:w-[300%] max-w-none" src="/img/portrait/neo-ground.svg" />
+        <img id="prisma" class="prisma flex max-w-[60%] sm:max-w-[350px] z-20" src="/img/portrait/prisma.svg" />
+    </div>
+</section>
+<script>
+    import { typeWritter } from '../libs';
+    let prisma_to = 0;
+    
+    function slide_word() {
+        return new Promise((resolve) => {
+            const mobile: string = window.matchMedia("(min-width: 640px)").matches ? '':'-mobile'; // h3 is desktop & h4 is mobile
+            const direction_word = document.querySelector(`h4#direction${mobile}`);
+            direction_word.classList.add('slided');
+            direction_word.addEventListener('animationend', () => {
+                resolve(1000);
+            })
+        })
+    }
+    function showPrisma(){
+        const prisma = document.querySelector("img#prisma");
+        prisma.classList.add('show');
+        prisma_to = setTimeout(() => {  
+            prisma.classList.remove('show');
+            prisma.classList.add('float');
+        }, 950);
+    }
+    function showNeoBg(){
+        const neo = document.querySelector("#neo-bg");
+        neo.classList.add('slide-up');
+    }
+
+    (async function initialize_animation() {
+        await typeWritter('Change The','first-line', 80);
+        await slide_word();
+        showNeoBg();
+        showPrisma();
+        await typeWritter('Of Your','second-line', 80);
+        await typeWritter('Bussiness','third-line', 80);
+        const description = document.querySelector("#description");
+        description.classList.add('show');
+
+    })();
+    // now we need to chain the animations
+</script>
+<style>
+
+</style>

@@ -1,0 +1,47 @@
+---
+const testimonials = [
+    {
+        name: 'Zoe Mantis',
+        icon: 'testimonial-1',
+        role: 'Founder, Alpha Group',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod'
+    },
+    {
+        name: 'Don Joe',
+        icon: 'testimonial-2',
+        role: 'Founder, Alpha Group',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod'
+    },
+    {
+        name: 'Zoe Mantis',
+        icon: 'testimonial-3',
+        role: 'Founder, Alpha Group',
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod'
+    },
+]
+---
+<section class="min-h-[55vh] text-white bg-black-200 px-8 lg:px-44 py-[6rem]">
+    <h1 class="font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem]">
+        Testimonials
+    </h1>
+    <div class="flex max-lg:flex-col flex-wrap my-5">
+        {
+            testimonials.map(({name, role, description, icon}, index) => {
+            return (
+            <div class="bg-black p-8 rounded-xl max-w-[460px] me-10 my-5">
+                <div class="flex items-center mb-6">
+                    <img src={`/img/testimonials/${icon}.png`} alt="image-1" class="rounded-full w-[50px] h-[50px] me-5" />
+                    <div>
+                        <h2 class="font-epilogue font-bold text-xl">{ name }</h2>
+                        <h3 class="font-rubik text-lg text-white-300">{ role }</h3>
+                    </div>
+                </div>
+                <p class="font-rubik text-xl text-white-100">
+                    { description }
+                </p>
+            </div>)
+            })
+        }
+        </div>
+    </div>
+</section>

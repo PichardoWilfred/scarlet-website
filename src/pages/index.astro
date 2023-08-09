@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Portrait from "../components/Portrait.astro";
+import Services from "../components/Services.astro";
+import WhyChoose from "../components/WhyChoose.astro";
+import LatestWork from "../components/LatestWork.astro";
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../libs.ts';
+---
+
+<Layout title="Scarlet">
+	<main class="text-white font-epilogue bg-black">
+		<Portrait />
+		<Services />
+		<WhyChoose />
+		<LatestWork />
+		<Testimonials />
+		<Contact />
+		<Footer />
+	</main>
+</Layout>
+
+<style>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>
