@@ -36,13 +36,23 @@ const services_2 = [
     },
     {
         icon: 'content-writting',
-        class_icon: 'w-[70px]',
+        class_icon: 'w-[65px]',
         class_name: 'max-w-[120px]',
         name: 'Content Writing',
         description: "Engaging and SEO-driven content that boosts your brand's online visibility and storytelling."
     },
 ]
 ---
+<script>
+    import { typeWritter } from '../libs';
+    
+    (async function init() {
+        await typeWritter("Our Digital", "our-digital", 50);
+        await typeWritter("Marketing Expertise", "marketing-expertise", 50);
+        const description_text = 'With Scarlett, experience unmatched expertise, tailored strategies, and a dedication to your success.'; 
+        await typeWritter(description_text, "description-text", 0.8); 
+    })()
+</script>
 <section class="relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden">
     <div class="background-image absolute top-0 left-[600px] h-full w-full z-20" />
     <div class="services-container items-center relative w-[85vw] mx-auto z-30">
@@ -54,11 +64,17 @@ const services_2 = [
                     <p class="text-white-300 leading-1">{ description }</p>
                 </div>))
         }
-        <div class="service-description flex flex-col justify-center grow max-w-[580px] py-8">
-            <h1 class="font-epilogue font-bold text-2xl leading-1 lg:text-[3rem] lg:leading-[3.6rem]">
-                Our Digital <br> Marketing Expertise
+        <div class="service-description">
+            <h1 id="our-digital" class="service-description-content">
+                <!-- Our Digital -->
             </h1>
-            <p class="text-white-200 mt-3 text-lg lg:text-xl">With Scarlett, experience unmatched expertise, tailored strategies, and a dedication to your success.</p>
+            <h1 id="marketing-expertise" class="service-description-content">
+                <!-- Marketing Expertise -->
+            </h1>
+            <p id="description-text" class="text-white-200 mt-3 text-lg lg:text-xl min-h-[56px]">
+                <!-- With Scarlett, experience unmatched expertise, tailored strategies, and a 
+                dedication to your success. -->
+            </p>
         </div>
         {
             services_2.map( ({ class_name, class_icon, name, description, icon }, index) => (
@@ -71,28 +87,74 @@ const services_2 = [
     </div>
 </section>
 <style>
-    .services-row {
-        @apply flex flex-wrap ml-[3vw];
-    }
     .background-image {
         background-image: url("/img/services/background-img.svg")
     }
     .services-container {
-        display: grid;
+        display: grid; 
+        justify-content: center;
         grid-template-areas:
-        "service-1 service-2 service-description service-description"
-        "service-3 service-4 service-5 service-6";
+            "service-description"
+            "service-1"
+            "service-2"
+            "service-3"
+            "service-4"
+            "service-5"
+            "service-6";
         column-gap: 32px;
         row-gap: 32px;
     }
-    .service-1 { grid-area: service-1; }
-    .service-2 { grid-area: service-2; }
-    .service-3 { grid-area: service-3; }
-    .service-description { grid-area: service-description; }
-    .service-4 { grid-area: service-4; }
-    .service-5 { grid-area: service-5; }
-    .service-6 { grid-area: service-6; }
     .service {
-        @apply flex flex-col bg-black-200 p-8 rounded-lg max-w-[350px];
+        opacity: 0;
+        transform: translateY(20%);
+        animation: fade-from-below 520ms ease-in-out forwards;
+        @apply flex flex-col bg-black-200 p-8 rounded-lg max-w-[580px] lg:max-w-[350px] min-h-[280px];
+    }
+    @keyframes fade-from-below {
+        from {
+            opacity: 0;
+            transform: translateY(20%);
+        }to{
+            opacity: 1;
+            transform: translateY(0%);
+        }
+    }
+    .service-1 { 
+        grid-area: service-1;
+        animation-delay: 100ms;
+    }
+    .service-2 { 
+        grid-area: service-2;
+        animation-delay: 300ms;
+    }
+    .service-3 { 
+        grid-area: service-3;
+        animation-delay: 500ms;
+    }
+    .service-description {
+        grid-area: service-description;
+        @apply grow flex flex-col max-w-[580px] max-lg:py-8;
+    }
+    .service-description-content {
+        @apply max-w-[720px] font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] lg:min-h-[58px] min-h-[];
+    }
+    .service-4 { 
+        grid-area: service-4;
+        animation-delay: 700ms;
+    }
+    .service-5 { 
+        grid-area: service-5;
+        animation-delay: 900ms;
+    }
+    .service-6 { 
+        grid-area: service-6;
+        animation-delay: 1100ms;
+    }
+    @media (min-width: 992px) {
+        .services-container {
+            grid-template-areas:
+            "service-1 service-2 service-description service-description"
+            "service-3 service-4 service-5 service-6";
+        }
     }
 </style>

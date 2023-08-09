@@ -3,7 +3,7 @@ import '@fontsource/rubik';
 import '@fontsource/epilogue';
 
 //typewritter effect
-export function typeWritter(word: string, element: string, speed: number) {
+export function typeWritter(word: string, element: string, speed: number = 150) {
     return new Promise((resolve) => {
         const dot = document.querySelector("span#red-dot");
         let index: number = 0;
