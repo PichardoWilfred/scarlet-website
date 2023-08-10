@@ -26,11 +26,14 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         <div id="mask" class="absolute top-0 left-0 w-full h-full bg-[#090909d0]" />
         <ul class="mobile-menu flex flex-col z-50 min-w-[30%] w-[50vw] bg-black border-t border-t-black-100">
             { [...menu_items, 'Contact Us'].map((label) => 
-            (<li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100">{label}</li>)) }
+            (<li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100"
+            id={label.replace(/\s+/g, "-").toLowerCase()}>{label}</li>)) }
         </ul>
     </div>
 </header>
 <script>
+    let timeout_assign = 0;
+
     let nav = false;
     function toggleNav() {
         nav = !nav;
@@ -40,8 +43,10 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         mobile_menu.classList[!nav ? 'remove':'add']('flex');
         menu.classList.toggle('slide-in');
         mobile_menu.classList[ nav ? 'remove':'add']('hidden');
+        
 
         document.body.classList.toggle('overflow-y-hidden');
+
     }
     const toggle_navigation = document.querySelector("#toggle-navigation"); //toggle button 
     const mask = document.querySelector("#mask"); //opacity mask
@@ -60,6 +65,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         "Footer"
     ];
     const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
+    const responsive_navbar =  window.matchMedia("(min-width: 1025px)") ? navbar_options : [...navbar_options, 'contact-us'];
 
     let last_section = ''; 
     const setActiveSection = (active_section) => { // setting the navbar active styles
@@ -106,17 +112,24 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         }
     };
     handle_scroll();
-    setTimeout(() => { // assign navigation
-        navbar_options.map((option, index) => {
-            const section = document.querySelector(`section#${option}`); 
-            const li = document.querySelector(`li#${option}`);
+    const assign_event_listener = () => {
+        timeout_assign = setTimeout(() => { // assign navigation
+            responsive_navbar.map((option, index) => {
+                console.log(option);
+                const section = document.querySelector(`section#${option}`); 
+                const li = document.querySelector(`li#${option}`);
 
-            li.addEventListener("click", () => {
-                const y = section.getBoundingClientRect().top + window.pageYOffset + (-100);
-                window.scrollTo({top: y, behavior: 'smooth'});
-            })
-        })
-    }, 0)
+                li.addEventListener("click", () => {
+                    const y = section.getBoundingClientRect().top + window.pageYOffset + (-100);
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                })
+            });
+        }, 0);
+    }
+    const remove_event_listeners = () => {
+
+    }
+    assign_event_listener();
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
