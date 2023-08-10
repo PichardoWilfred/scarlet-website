@@ -1,16 +1,19 @@
 ---
-const menu_items = ['About Us', 'Service', 'Latest Work', 'Testimonials'];
+
+const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
+
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
         <img src="/img/nav-bar-logo.svg" class="w-[25px] lg:w-[40px] object-contain" />
         <ul class="hidden lg:flex justify-center unstyled">
-            { menu_items.map((title, index) => (
+            { menu_items.map((title) => (
                 <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
                 after:bottom-[-2px] after:left-0 after:w-[0] after:h-[2px] after:transition-all origin-center
-                hover:after:w-full hover:cursor-pointer">
-                { title }
-            </li>)) }
+                hover:after:w-full hover:cursor-pointer" id={title.replace(/\s+/g, "-").toLowerCase()}>
+                    { title }
+                </li>
+            )) }
         </ul>
         <button class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md">
             Contact Us
@@ -40,11 +43,74 @@ const menu_items = ['About Us', 'Service', 'Latest Work', 'Testimonials'];
 
         document.body.classList.toggle('overflow-y-hidden');
     }
-    const toggle_navigation = document.querySelector("#toggle-navigation"); //mask
-    const mask = document.querySelector("#mask"); 
+    const toggle_navigation = document.querySelector("#toggle-navigation"); //toggle button 
+    const mask = document.querySelector("#mask"); //opacity mask
 
-    toggle_navigation.addEventListener("click", toggleNav);
-    mask.addEventListener("click", toggleNav);
+    toggle_navigation.addEventListener("click", toggleNav); // menu button listener
+    mask.addEventListener("click", toggleNav); // mask-listener
+    
+    // Navigation bar
+    const navbar: string[] = [
+        "Portrait",
+        "Services",
+        "About Us",
+        "Latest Work",
+        "Testimonials",
+        "Contact Us",
+        "Footer"
+    ];
+    let last_section = ''; 
+    const setActiveSection = (active_section) => { // setting the navbar active styles
+        const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
+        const which_option =  ['footer', 'portrait'].indexOf(active_section);
+        // in_new_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
+
+        const remove_last = () => {
+            if (  last_section !== '' ) { //if the last section is not on the navbar delete the active
+                if (navbar_options.indexOf(last_section) !== -1) {
+                    const last_li = document.querySelector(`li#${last_section}`);
+                    last_li.classList.remove('active');
+                } if (last_section === 'portrait') {
+                    console.log('bright!');
+                }
+            }
+        }
+
+        if ( navbar_options.indexOf(active_section) >= 0 ) { // we are on a navbar-section
+            const in_new_section = active_section !== last_section; 
+            if (in_new_section) {
+                remove_last();
+                const li = document.querySelector(`li#${active_section}`);
+                li.classList.add('active');
+                console.log('not bright!');
+            }
+        } else if(which_option >= 0 ) { //were not on a navbar-section
+            remove_last()
+        }
+        last_section = active_section;
+    }
+    
+    const handle_scroll = () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        const sections = document.querySelectorAll("section");
+
+        for (let i = 0; i < sections.length; i++) {
+
+            const section = sections[i];
+            const offsetTop = section.offsetTop;
+            const offsetBottom = offsetTop + section.offsetHeight;
+
+            if ( scrollPosition >= offsetTop && scrollPosition < offsetBottom ) {
+                    setActiveSection(navbar[i].replace(/\s+/g, "-").toLowerCase());
+                    // const section_DOM = document.querySelector(`#${active_section}`);
+                    // section_DOM.scrollIntoView({ behavior: "smooth" });
+                    // console.log(`active section:\n ${navbar[i].replace(/\s+/g, "-").toLowerCase()}`);
+                    break;
+                }
+            }
+    };
+    handle_scroll();
+    window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
     .slide-in {
@@ -62,5 +128,8 @@ const menu_items = ['About Us', 'Service', 'Latest Work', 'Testimonials'];
         to {
             transform: translateX(4%);
         }
+    }
+    li.active {
+        @apply after:w-full;
     }
 </style>

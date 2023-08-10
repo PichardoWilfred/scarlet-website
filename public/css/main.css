@@ -34,7 +34,7 @@ h4.direction, h4.direction-mobile {
     }to {
         transform: translateY(calc(0% + 120px));
     }
-} 
+}
 h4.direction-mobile.slided {
     opacity: 1;
     animation: slide-from-left .35s cubic-bezier(.3,.71,.18,1) forwards;
@@ -102,14 +102,11 @@ img.prisma {
         transform: translateY(4%);
     }
 }
-
+section {
+    scroll-snap-align: start;
+}
 .section-title {
-    font-family: 'Epilogue', sans-serif;
-    font-weight: bold;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-
-    /* font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] */
+    @apply font-bold text-xl leading-9 font-epilogue;
 }
 
 @media (min-width: 992px) {

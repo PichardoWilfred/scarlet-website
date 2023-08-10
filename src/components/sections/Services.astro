@@ -44,7 +44,7 @@ const services_2 = [
 ]
 ---
 <script>
-    import { typeWritter } from '../libs';
+    import { typeWritter } from '../../libs';
     
     (async function init() {
         await typeWritter("Our Digital", "our-digital", 50);
@@ -53,7 +53,7 @@ const services_2 = [
         await typeWritter(description_text, "description-text", 0.8); 
     })()
 </script>
-<section class="relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden">
+<section class="relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden" id="services">
     <div class="background-image absolute top-0 left-[600px] h-full w-full z-20" />
     <div class="services-container items-center relative w-[85vw] mx-auto z-30">
         {
