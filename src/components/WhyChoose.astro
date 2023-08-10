@@ -5,16 +5,19 @@
     <div class="w-full max-w-[640px] lg:min-w-[580px] h-[400px] md:h-[580px] lg:mr-10">
         <div class="bg-gradient-to-b from-red-300 to-red-400 rounded-[9vw] lg:rounded-[6rem] h-full w-full p-2 lg:p-4">
             <div class="relative flex justify-center bg-black h-full w-full rounded-[9vw] lg:rounded-[5rem] overflow-hidden">
-                <img src="/img/why-choose/stars.svg" alt="stars" class="block absolute w-[2500px] top-[10px] left-[-140%] max-w-none z-10" />
-                <img src="/img/why-choose/sun.svg" alt="sun" class="w-[50%] sm:w-[330px] md:w-[350px] mt-[30%] md:mt-[30%] xl:mt-20 z-20" />
-                <img src="/img/why-choose/mountains.svg" alt="mountains" class="block absolute bottom-[-19px] left-[-60%] max-lg:min-w-[2000px] max-lg:w-[320%] lg:w-[3500px] max-w-none z-30" />
+                <img src="/img/why-choose/stars.svg" alt="stars" 
+                class="stars block absolute w-[3800px] left-[-140%] max-w-none z-10" />
+                <img src="/img/why-choose/sun.svg" alt="sun" 
+                class="sun w-[50%] sm:w-[330px] md:w-[350px] mt-[30%] md:mt-[30%] xl:mt-20 z-20" />
+                <img src="/img/why-choose/mountains.svg" alt="mountains" 
+                class="mountains block absolute bottom-[-19px] left-[-60%] max-lg:min-w-[2000px] max-lg:w-[320%] lg:w-[3500px] max-w-none z-30" />
             </div>
         </div>
     </div>
 
     <div class="flex flex-col justify-center max-w-[640px] max-lg:mt-10">
         <h1 class="text-white font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] max-w-[470px]">
-            Why should you choose Scarlet
+            Why you should choose Scarlet
         </h1>
         <p class="text-white-200 text-md lg:text-[1.25rem] leading-[1.85rem] my-4">
             With expertise in web development, design, SEO, and social media marketing, we provide tailored strategies and exceptional results. 
@@ -25,3 +28,45 @@
         </button>
     </div>
 </section>
+<style>
+    img.stars {
+        animation: move-stars linear infinite 26s;
+    }
+    @keyframes move-stars {
+        0% {
+            opacity: 0;
+            transform: translateX(20%);
+        } 50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(0%);
+        }
+    }
+    img.sun {
+        opacity: 0.5;
+        transform: translateY(20%);
+        animation: move-sun ease-in-out 1s forwards;
+    }
+@keyframes move-sun {
+    from {
+        opacity: 0.5;
+        transform: translateY(20%);
+    }to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    
+}
+img.mountains {
+    animation: move-mountains linear infinite 30s;
+}
+@keyframes move-mountains {
+    from {
+        transform: translateX(0%);
+    }to {
+        transform: translateX(-33%);
+    }
+}
+</style>
