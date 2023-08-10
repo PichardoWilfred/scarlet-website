@@ -59,12 +59,12 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         "Contact Us",
         "Footer"
     ];
+    const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
+
     let last_section = ''; 
     const setActiveSection = (active_section) => { // setting the navbar active styles
-        const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
         const which_option =  ['footer', 'portrait'].indexOf(active_section);
         // in_new_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
-
         const remove_last = () => {
             if (  last_section !== '' ) { //if the last section is not on the navbar delete the active
                 if (navbar_options.indexOf(last_section) !== -1) {
@@ -89,27 +89,34 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         }
         last_section = active_section;
     }
-    
+
     const handle_scroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         const sections = document.querySelectorAll("section");
 
         for (let i = 0; i < sections.length; i++) {
-
             const section = sections[i];
             const offsetTop = section.offsetTop;
             const offsetBottom = offsetTop + section.offsetHeight;
 
             if ( scrollPosition >= offsetTop && scrollPosition < offsetBottom ) {
-                    setActiveSection(navbar[i].replace(/\s+/g, "-").toLowerCase());
-                    // const section_DOM = document.querySelector(`#${active_section}`);
-                    // section_DOM.scrollIntoView({ behavior: "smooth" });
-                    // console.log(`active section:\n ${navbar[i].replace(/\s+/g, "-").toLowerCase()}`);
-                    break;
-                }
+                setActiveSection(navbar[i].replace(/\s+/g, "-").toLowerCase());
+                break;
             }
+        }
     };
     handle_scroll();
+    setTimeout(() => { // assign navigation
+        navbar_options.map((option, index) => {
+            const section = document.querySelector(`section#${option}`); 
+            const li = document.querySelector(`li#${option}`);
+
+            li.addEventListener("click", () => {
+                const y = section.getBoundingClientRect().top + window.pageYOffset + (-100);
+                window.scrollTo({top: y, behavior: 'smooth'});
+            })
+        })
+    }, 0)
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
