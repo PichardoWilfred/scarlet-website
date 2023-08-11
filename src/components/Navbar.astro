@@ -32,7 +32,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     </div>
 </header>
 <script>
-    const in_mobile = window.matchMedia("(min-width: 1025px)").matches;
+    const in_desktop = window.matchMedia("(min-width: 1025px)").matches;
     let timeout_assign = 0;
 
     let nav = false;
@@ -45,7 +45,6 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         mobile_menu.classList[ nav ? 'add':'remove' ]('flex');
 
         menu.classList.toggle('slide-in');
-        // nav ?  : ;
 
         mobile_menu.classList[ nav ? 'remove':'add' ]('hidden');
 
@@ -68,7 +67,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         "Footer"
     ];
     const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
-    const responsive_navbar = in_mobile ? navbar_options : [...navbar_options, 'contact-us'];
+    const responsive_navbar = in_desktop ? navbar_options : [...navbar_options, 'contact-us'];
 
     let last_section = ''; 
     const setActiveSection = (active_section) => { // setting the navbar active styles
@@ -115,8 +114,8 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         }
     };
     const scrollDiv = (section: any) => {
-        toggleNav();
-        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_mobile ? 1:-100);
+        if (!in_desktop) toggleNav();
+        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? 1:-100);
         window.scrollTo({top: y, behavior: 'smooth'});
         
     }
@@ -134,7 +133,8 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         timeout_assign = setTimeout(() => { // assign navigation
             responsive_navbar.map((option) => {
                 const section = document.querySelector(`section#${option}`); 
-                const li = document.querySelector(`li#${option}-mobile`);
+                console.log(in_desktop);
+                const li = document.querySelector(`li#${option}${in_desktop ? '':'-mobile'}`);
                 // console.log(li);
                 li.addEventListener("click", () => { scrollDiv(section);  })
             });
