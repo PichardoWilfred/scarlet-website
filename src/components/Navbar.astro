@@ -36,17 +36,15 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     let timeout_assign = 0;
 
     let nav = false;
-    function toggleNav() {
+    function toggleNav() { //Los eventlistener se est'an mutilplicando
         nav = !nav;
         
-        // console.log(nav ? 'opening':'closing');
         const mobile_menu = document.querySelector("#mobile-menu");
         const menu = mobile_menu.querySelector("ul");
 
         mobile_menu.classList[ nav ? 'add':'remove' ]('flex');
 
         menu.classList.toggle('slide-in');
-        if (nav) assign_event_listeners()
         // nav ?  : ;
 
         mobile_menu.classList[ nav ? 'remove':'add' ]('hidden');
@@ -127,22 +125,21 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         timeout_assign = setTimeout(() => {
             responsive_navbar.map((option) => { // remove navigation
                     const section = document.querySelector(`section#${option}`); 
-                    const li = document.querySelector(`li#${option}`);
+                    const li = document.querySelector(`li#${option}-mobile`);
                     li.removeEventListener("click", () => { scrollDiv(section); })
                 });
-        },0)
+        },0);
     }
-    const assign_event_listeners = () => {
+    const assign_event_listeners = (() => {
         timeout_assign = setTimeout(() => { // assign navigation
             responsive_navbar.map((option) => {
                 const section = document.querySelector(`section#${option}`); 
                 const li = document.querySelector(`li#${option}-mobile`);
-
+                // console.log(li);
                 li.addEventListener("click", () => { scrollDiv(section);  })
             });
         }, 0);
-    }
-    assign_event_listeners();
+    })();
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
