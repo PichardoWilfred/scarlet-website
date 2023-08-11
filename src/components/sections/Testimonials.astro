@@ -20,7 +20,7 @@ const testimonials = [
     },
 ]
 ---
-<section class="min-h-[55vh] text-white bg-black-200 px-8 lg:px-44 py-[6rem]">
+<section class="min-h-[55vh] text-white bg-black-200 px-8 lg:px-44 py-[2rem] lg:py-[6rem]" id="testimonials">
     <h1 class="font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem]">
         Testimonials
     </h1>
@@ -28,7 +28,7 @@ const testimonials = [
         {
             testimonials.map(({name, role, description, icon}, index) => {
             return (
-            <div class="bg-black p-8 rounded-xl max-w-[460px] me-10 my-5">
+            <div class="bg-black p-8 rounded-xl max-w-[460px] lg:me-10 my-5">
                 <div class="flex items-center mb-6">
                     <img src={`/img/testimonials/${icon}.png`} alt="image-1" class="rounded-full w-[50px] h-[50px] me-5" />
                     <div>

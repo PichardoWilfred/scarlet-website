@@ -18,7 +18,7 @@
         }
     ]
 ---
-<section class="min-h-[75vh] text-white bg-black px-8 lg:px-44 py-[6rem]">
+<section class="min-h-[75vh] text-white bg-black px-8 lg:px-44 py-[2rem] lg:py-[6rem]" id="latest-work">
     <h1 class="font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] mb-10">
         Our latest work
     </h1>
@@ -28,8 +28,8 @@
                 return  (
                     <div class="flex flex-col w-full max-w-[340px] lg:max-w-[28vw] me-8 mb-8">
                         <img src={`/img/latest-work/${icon}.png`} alt={ icon } class="rounded-xl mb-5 max-w-none" />
-                        <h2 class={`flex items-center font-bold text-white text-3xl mb-4 min-h-[72px] ${class_name}`}>{ name }</h2>
-                        <p class="text-white-200 text-xl">{ description }</p>
+                        <h2 class={`flex items-center font-bold text-white text-2xl lg:text-3xl mb-4 lg:min-h-[72px] ${class_name}`}>{ name }</h2>
+                        <p class="text-white-200 lg:text-xl">{ description }</p>
                     </div>
                 )
             })
