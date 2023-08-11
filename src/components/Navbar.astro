@@ -27,26 +27,31 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         <ul class="mobile-menu flex flex-col z-50 min-w-[30%] w-[50vw] bg-black border-t border-t-black-100">
             { [...menu_items, 'Contact Us'].map((label) => 
             (<li class="cursor-pointer capitalize text-white-200 p-6 border-b border-b-black-100 hover:border-b-red-100 hover:text-white transition-all duration-100"
-            id={label.replace(/\s+/g, "-").toLowerCase()}>{label}</li>)) }
+            id={`${label.replace(/\s+/g, "-").toLowerCase()}-mobile`}>{ label }</li>)) }
         </ul>
     </div>
 </header>
 <script>
+    const in_mobile = window.matchMedia("(min-width: 1025px)").matches;
     let timeout_assign = 0;
 
     let nav = false;
     function toggleNav() {
         nav = !nav;
+        
+        // console.log(nav ? 'opening':'closing');
         const mobile_menu = document.querySelector("#mobile-menu");
         const menu = mobile_menu.querySelector("ul");
 
-        mobile_menu.classList[!nav ? 'remove':'add']('flex');
+        mobile_menu.classList[ nav ? 'add':'remove' ]('flex');
+
         menu.classList.toggle('slide-in');
-        mobile_menu.classList[ nav ? 'remove':'add']('hidden');
-        
+        if (nav) assign_event_listeners()
+        // nav ?  : ;
+
+        mobile_menu.classList[ nav ? 'remove':'add' ]('hidden');
 
         document.body.classList.toggle('overflow-y-hidden');
-
     }
     const toggle_navigation = document.querySelector("#toggle-navigation"); //toggle button 
     const mask = document.querySelector("#mask"); //opacity mask
@@ -65,7 +70,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         "Footer"
     ];
     const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
-    const responsive_navbar =  window.matchMedia("(min-width: 1025px)") ? navbar_options : [...navbar_options, 'contact-us'];
+    const responsive_navbar = in_mobile ? navbar_options : [...navbar_options, 'contact-us'];
 
     let last_section = ''; 
     const setActiveSection = (active_section) => { // setting the navbar active styles
@@ -111,25 +116,33 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
             }
         }
     };
+    const scrollDiv = (section: any) => {
+        toggleNav();
+        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_mobile ? 1:-100);
+        window.scrollTo({top: y, behavior: 'smooth'});
+        
+    }
     handle_scroll();
-    const assign_event_listener = () => {
+    const remove_event_listeners = () => {
+        timeout_assign = setTimeout(() => {
+            responsive_navbar.map((option) => { // remove navigation
+                    const section = document.querySelector(`section#${option}`); 
+                    const li = document.querySelector(`li#${option}`);
+                    li.removeEventListener("click", () => { scrollDiv(section); })
+                });
+        },0)
+    }
+    const assign_event_listeners = () => {
         timeout_assign = setTimeout(() => { // assign navigation
-            responsive_navbar.map((option, index) => {
-                console.log(option);
+            responsive_navbar.map((option) => {
                 const section = document.querySelector(`section#${option}`); 
-                const li = document.querySelector(`li#${option}`);
+                const li = document.querySelector(`li#${option}-mobile`);
 
-                li.addEventListener("click", () => {
-                    const y = section.getBoundingClientRect().top + window.pageYOffset + (-100);
-                    window.scrollTo({top: y, behavior: 'smooth'});
-                })
+                li.addEventListener("click", () => { scrollDiv(section);  })
             });
         }, 0);
     }
-    const remove_event_listeners = () => {
-
-    }
-    assign_event_listener();
+    assign_event_listeners();
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
