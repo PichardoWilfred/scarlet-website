@@ -5,7 +5,7 @@ import ScarletLogo from "./scarlet-logo.vue";
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
-        <ScarletLogo id="scarlet-logo" class="bright cursor-pointer h-[25px] w-[25px] lg:h-[40px] lg:w-[40px] object-contain" />
+        <ScarletLogo id="scarlet-logo" class="bright cursor-pointer h-[40px] w-[40px] object-contain" />
         <ul class="hidden lg:flex justify-center unstyled">
             { menu_items.map((title) => (
                 <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
@@ -18,7 +18,7 @@ import ScarletLogo from "./scarlet-logo.vue";
         <button id="contact-us" type="button" class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md">
             Contact Us
         </button>
-        <button id="toggle-navigation" type="button" class="flex lg:hidden">
+        <button id="toggle-navigation" type="button" class="flex lg:hidden min-w-[unset] py-1">
             <img src="/img/menu.svg" class="cursor-pointer w-[35px] object-contain" />
         </button>
     </nav>
