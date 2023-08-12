@@ -1,11 +1,11 @@
 ---
 
 const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
-import ScarletLogo from "./scarlet-logo.vue";
+import ScarletLogo from "./scarlet-logo.astro";
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
-        <ScarletLogo id="scarlet-logo" class="bright cursor-pointer h-[40px] w-[40px] object-contain" />
+        <ScarletLogo id="scarlet-logo" class_="nav bright cursor-pointer h-[40px] w-[40px] object-contain" />
         <ul class="hidden lg:flex justify-center unstyled">
             { menu_items.map((title) => (
                 <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
@@ -71,7 +71,7 @@ import ScarletLogo from "./scarlet-logo.vue";
     let last_section = ''; // for removing the last "section active styles"
     const setActiveSection = (active_section) => { // setting the navbar "active section styles"
         const which_option =  ['contact-us', 'portrait'].indexOf(active_section);
-        const prisma = document.querySelector("svg#scarlet-logo");
+        const prisma_nav = document.querySelector("svg#scarlet-logo");
         const prisma_portrait = document.querySelector("svg#prisma");
         // const store = document.querySelector("span#store");
         // active_section !== last_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
@@ -86,7 +86,7 @@ import ScarletLogo from "./scarlet-logo.vue";
         }
 
         const change_theme = (theme: string) => {
-            [prisma, prisma_portrait].map((image) => {
+            [prisma_nav, prisma_portrait].map((image) => {
                 const color_theme = {
                     bright: {
                         last: 'dark',
