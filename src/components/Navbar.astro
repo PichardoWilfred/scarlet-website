@@ -15,7 +15,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
                 </li>
             )) }
         </ul>
-        <button class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md">
+        <button id="contact-us" type="button" class="hidden lg:flex contact font-rubik h-max px-6 py-3 rounded-md">
             Contact Us
         </button>
         <button id="toggle-navigation" type="button" class="flex lg:hidden">
@@ -138,11 +138,26 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
                 // console.log(li);
                 li.addEventListener("click", () => { scrollDiv(section);  })
             });
+            if (in_desktop) {
+                const contact_section = document.querySelector("section#contact-us"); 
+                const contact_btn = document.querySelector("button#contact-us");
+                console.log(contact_btn);
+                console.log(contact_section);
+                contact_btn.addEventListener("click", () => { scrollDiv(contact_section);  })
+            }
         }, 0);
     })();
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
+    button.contact {
+        transition: all 250ms cubic-bezier(.8,.87,0,.95);
+        background: linear-gradient(to bottom, #700007 0%, #E40000 50%, #700007 100%);
+        background-size: auto 200%;
+    }
+    button.contact:hover {
+        background-position: bottom right;
+    }
     .slide-in {
         animation: slide-in 150ms ease-in-out;
     }
