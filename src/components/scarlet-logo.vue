@@ -79,6 +79,11 @@ svg.prisma {
         transition: all .25s ease-in-out;
     } 
 }
+svg.prisma.portrait {
+    & > path.prisma-outline, & > g.light-effect, & > path.up-fill, & > path.down-fill {
+        transition-delay: 750ms;
+    } 
+}
 svg.prisma.bright {
     & > path.prisma-outline, & > g.light-effect {
         stroke: #8A0008;
