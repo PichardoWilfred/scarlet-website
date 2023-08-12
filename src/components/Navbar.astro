@@ -5,7 +5,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
-        <img src="/img/nav-bar-logo.svg" class="w-[25px] lg:w-[40px] object-contain" />
+        <img id="scarlet-logo" src="/img/nav-bar-logo.svg" class="cursor-pointer w-[25px] lg:w-[40px] object-contain" />
         <ul class="hidden lg:flex justify-center unstyled">
             { menu_items.map((title) => (
                 <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
@@ -35,10 +35,9 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     const in_desktop = window.matchMedia("(min-width: 1025px)").matches;
     let timeout_assign = 0;
 
-    let nav = false;
-    function toggleNav() { //Los eventlistener se est'an mutilplicando
+    let nav = false; // (mobile) boolean for presenting the side navigation
+    function toggleNav() { // (mobile) changing the state of the side navigation
         nav = !nav;
-        
         const mobile_menu = document.querySelector("#mobile-menu");
         const menu = mobile_menu.querySelector("ul");
 
@@ -57,7 +56,7 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     mask.addEventListener("click", toggleNav); // mask-listener
     
     // Navigation bar
-    const navbar: string[] = [
+    const navbar: string[] = [ //used when handling the scrolling event for asisgning the active styles
         "Portrait",
         "Services",
         "About Us",
@@ -66,36 +65,41 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         "Contact Us",
         "Footer"
     ];
-    const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials'];
-    const responsive_navbar = in_desktop ? navbar_options : [...navbar_options, 'contact-us'];
+    const navbar_options = ['services', 'about-us', 'latest-work', 'testimonials']; // for asigning the active section
+    const responsive_navbar = in_desktop ? navbar_options : [...navbar_options, 'contact-us']; //for asigning the navigation event listener of each section
 
-    let last_section = ''; 
-    const setActiveSection = (active_section) => { // setting the navbar active styles
-        const which_option =  ['footer', 'portrait'].indexOf(active_section);
-        // in_new_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
-        const remove_last = () => {
-            if (  last_section !== '' ) { //if the last section is not on the navbar delete the active
-                if (navbar_options.indexOf(last_section) !== -1) {
-                    const last_li = document.querySelector(`li#${last_section}`);
-                    last_li.classList.remove('active');
-                } if (last_section === 'portrait') {
-                    console.log('bright!');
-                }
+    let last_section = ''; // for removing the last "section active styles"
+    const setActiveSection = (active_section) => { // setting the navbar "active section styles"
+        const which_option =  ['contact-us', 'portrait'].indexOf(active_section);
+        // console.log(active_section);
+        // active_section !== last_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
+        const remove_last = () => { //if the last section is not on the navbar delete the active
+            if (  last_section === '' ) return; 
+            
+            if (navbar_options.indexOf(last_section) !== -1) { // If the last section is in the navbar, remove the "active styles"
+                const last_li = document.querySelector(`li#${last_section}`);
+                last_li.classList.remove('active');
             }
+
+            if (active_section === 'portrait') {
+                console.log('bright!');
+            }
+            
         }
 
         if ( navbar_options.indexOf(active_section) >= 0 ) { // we are on a navbar-section
-            const in_new_section = active_section !== last_section; 
-            if (in_new_section) {
+            const in_new_section = active_section !== last_section;
+            
+            if (in_new_section) { //asign the "active section styles" whenever we enter a new section
                 remove_last();
                 const li = document.querySelector(`li#${active_section}`);
                 li.classList.add('active');
                 console.log('not bright!');
             }
-        } else if(which_option >= 0 ) { //were not on a navbar-section
-            remove_last()
+        } else if(which_option >= 0 ) { //were not on a navbar-section (portrait or contact-us)
+            remove_last();
         }
-        last_section = active_section;
+        last_section = active_section; ///updating the last_section
     }
 
     const handle_scroll = () => {
@@ -113,13 +117,13 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
             }
         }
     };
-    const scrollDiv = (section: any) => {
-        if (!in_desktop) toggleNav();
-        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? 1:-100);
+    handle_scroll(); // for setting in which section we currently load in 
+    const scrollDiv = (section: any, toggle_nav: boolean = true) => {
+        if (!in_desktop && toggle_nav) toggleNav();
+        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? -100:-30);
         window.scrollTo({top: y, behavior: 'smooth'});
         
     }
-    handle_scroll();
     const remove_event_listeners = () => {
         timeout_assign = setTimeout(() => {
             responsive_navbar.map((option) => { // remove navigation
@@ -133,20 +137,21 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         timeout_assign = setTimeout(() => { // assign navigation
             responsive_navbar.map((option) => {
                 const section = document.querySelector(`section#${option}`); 
-                console.log(in_desktop);
                 const li = document.querySelector(`li#${option}${in_desktop ? '':'-mobile'}`);
-                // console.log(li);
                 li.addEventListener("click", () => { scrollDiv(section);  })
             });
-            if (in_desktop) {
-                const contact_section = document.querySelector("section#contact-us"); 
+            if (in_desktop) { // setting aditional navigation buttons
+                const contact_section = document.querySelector("section#contact-us"); //contact 
                 const contact_btn = document.querySelector("button#contact-us");
-                console.log(contact_btn);
-                console.log(contact_section);
                 contact_btn.addEventListener("click", () => { scrollDiv(contact_section);  })
             }
+            
+            const portrait = document.querySelector("section#portrait") // portrait and logo
+            const scarlet_logo = document.querySelector("#scarlet-logo");
+            scarlet_logo.addEventListener("click", () => { scrollDiv(portrait, false) })
+
         }, 0);
-    })();
+    })(); //executed right away
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>
@@ -161,7 +166,6 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     .slide-in {
         animation: slide-in 150ms ease-in-out;
     }
-
     @keyframes slide-in {
         from {
             opacity: 0;
