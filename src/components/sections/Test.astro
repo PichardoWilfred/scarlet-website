@@ -1,0 +1,64 @@
+---
+import ScarletLogo from "../scarlet-logo.astro"
+const current_class = '';
+// enter-from
+// enter-to
+
+// leave-from
+// leave-to
+---
+<section class="min-h-screen bg-white">
+    <button class="font-bold bg-red-300 py-5 px-3 rounded min-w-[130px] text-lg" id="enable-bright">
+        Bright!
+    </button>
+    <button class="bg-red-400 text-white py-5 px-3 rounded font-bold min-w-[130px] text-lg">
+        Turn Off
+    </button>
+    <ScarletLogo />
+</section>
+<script>
+//     let bright = false;
+//     const btn = document.querySelector("button#enable-bright");
+//     btn.addEventListener("click", () => {
+//         toggle_bright();
+//     })
+//     const toggle_bright = () => { // toggle the bright state on the prisma
+//         bright = !bright;
+        
+//         const logo = document.querySelector("#main-scarlet-logo");
+//         // console.log(logo);
+//         logo.classList.add(bright ? "enter-from": "leave-from");
+        
+//         logo.addEventListener("animationend", () => {
+//             const ready = logo.classList.contains('enter-from') || logo.classList.contains('leave-from') ;
+            
+//             if (!ready) return;
+            
+//             logo.classList.add(bright ? "enter-to": "leave-to");
+//             logo.classList.remove(bright ? "enter-from": "leave-from")
+//         })
+//     };
+// </script>
+<style lang="scss" is:global>
+    .scarlet-logo {
+        & > g.brightness-filter {
+            display: none;
+        }
+        &.enter-from > g.brightness-filter {
+            display: block;
+            opacity: 0;
+        }
+        &.enter-to > g.brightness-filter {
+            opacity: 1;
+        }
+        &.leave-from > g.brightness-filter {
+            opacity: 1;
+        }
+        &.leave-to > g.brightness-filter {
+            opacity: 0;
+        }
+    }
+    button {
+        @apply py-5 px-3 rounded min-w-[120px] text-white font-bold text-lg;
+    }
+</style>

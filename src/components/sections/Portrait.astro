@@ -1,3 +1,6 @@
+---
+import ScarletLogo from "../scarlet-logo.vue";
+---
 
 <section class="portrait relative max-md:h-[130vh] sm:h-[95vh] flex max-lg:flex-col overflow-hidden justify-around " id="portrait">
     <div class="relative flex justify-center max-md:px-6 max-md:justify-center z-20">
@@ -25,7 +28,7 @@
     </div>
     <div class="flex relative justify-center items-center lg:max-w-[500px] lg:h-[600px] py-10 z-10">
         <img id="neo-bg" class="neo-background absolute top-[60%] lg:top-[58%] lg:left-[-80%] w-[1200px] lg:w-[300%] max-w-none" src="/img/portrait/neo-ground.svg" />
-        <img id="prisma" class="prisma flex max-w-[60%] sm:max-w-[350px] z-20" src="/img/portrait/prisma.svg" />
+        <!-- <scarlet-logo class="prisma flex max-w-[60%] sm:max-w-[350px] z-20" client:load /> -->
     </div>
     <div class="lg:hidden absolute w-full bottom-0 left-0 h-[10vh] bg-gradient-to-t from-black z-10" />
 </section>
@@ -44,7 +47,7 @@
         })
     }
     function showPrisma(){
-        const prisma = document.querySelector("img#prisma");
+        const prisma = document.querySelector("svg#prisma");
         prisma.classList.add('show');
         prisma_to = setTimeout(() => {  
             prisma.classList.remove('show');
@@ -69,6 +72,99 @@
     })();
     // now we need to chain the animations
 </script>
-<style>
+<style is:global>
+section.portrait p.description {
+    opacity: 0;
+    transition: all 150ms ease-in-out;
+}
+section.portrait p.description.show {
+    opacity: 1;
+}
 
+h4.direction, h4.direction-mobile {
+    opacity: 0;
+}
+:is(h4, h4).direction.slided {
+    opacity: 1;
+    animation: slide-from-up .5s cubic-bezier(.3,.71,.18,1);
+    -webkit-animation-fill-mode: forwards; /* Chrome 16+, Safari 4+ */
+    -moz-animation-fill-mode: forwards;    /* FF 5+ */
+    -o-animation-fill-mode: forwards;      /* Not implemented yet */
+    -ms-animation-fill-mode: forwards;     /* IE 10+ */
+    animation-fill-mode: forwards;   
+}
+@keyframes slide-from-up {
+    from {
+        transform: translateY(-120%);
+    }to {
+        transform: translateY(calc(0% + 120px));
+    }
+}
+h4.direction-mobile.slided {
+    opacity: 1;
+    animation: slide-from-left .35s cubic-bezier(.3,.71,.18,1) forwards;
+}
+
+@keyframes slide-from-left {
+    from {
+        transform: translateX(-60%);
+    }to {
+        transform: translateY(0%);
+    }
+} 
+svg.prisma {
+    animation: float 7s cubic-bezier(.26,.06, 0, .21) infinite;
+}
+@media (min-width: 768px) {
+    img.neo-background {
+        opacity: 0;
+    }
+    img.neo-background.slide-up {
+        animation: slow-slide-from-bottom 600ms ease-out forwards;
+    }
+    @keyframes slow-slide-from-bottom {
+        from {
+            opacity: 0;
+            transform: translateY(10%);
+        } to {
+            opacity: 1;
+            transform: translateY(0%);
+        }
+    }
+    svg.prisma {
+        opacity: 0;
+    }
+    svg.prisma.show {
+        opacity: 1;
+        animation: slide-from-bottom 900ms ease-in-out;
+    }
+    @keyframes slide-from-bottom {
+        from {
+            opacity: 0;
+            transform: translateY(65%);
+        }
+        50% {
+            opacity: 1;
+        }
+        to {
+            transform: translateY(4%);
+        }
+    }
+    svg.prisma.float {
+        opacity: 1;
+        animation: float 5s cubic-bezier(.26,.06, 0, .21) infinite;
+    }
+}
+/* float or idle */
+@keyframes float {
+    0% {
+        transform: translateY(4%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(4%);
+    }
+}
 </style>
