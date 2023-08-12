@@ -1,7 +1,6 @@
 //fonts
 import '@fontsource/rubik';
 import '@fontsource/epilogue';
-
 //typewritter effect
 export function typeWritter(word: string, element: string, speed: number = 150) {
     return new Promise((resolve) => {

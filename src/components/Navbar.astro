@@ -69,13 +69,15 @@ import ScarletLogo from "./scarlet-logo.astro";
     const responsive_navbar = in_desktop ? navbar_options : [...navbar_options, 'contact-us']; //for asigning the navigation event listener of each section
 
     let last_section = ''; // for removing the last "section active styles"
+    let current_section = '';
     const setActiveSection = (active_section) => { // setting the navbar "active section styles"
+        
         const which_option =  ['contact-us', 'portrait'].indexOf(active_section);
         const prisma_nav = document.querySelector("svg#scarlet-logo");
         const prisma_portrait = document.querySelector("svg#prisma");
-        // const store = document.querySelector("span#store");
+
         // active_section !== last_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
-        const remove_last_nav_section_styles = () => { //if the last section is not on the navbar delete the active
+        const remove_last_nav_section_styles = () => { //if the last section is not on the navbar delete the active styles
             if (  last_section === '' ) return; 
             
             if (navbar_options.indexOf(last_section) !== -1) { // If the last section is in the navbar, remove the "active styles"
@@ -85,7 +87,7 @@ import ScarletLogo from "./scarlet-logo.astro";
             if (active_section === 'portrait') change_theme('bright')
         }
 
-        const change_theme = (theme: string) => {
+        const change_theme = (theme: string) => { // changing the theme (bright | dark) of the prisma illustration 
             [prisma_nav, prisma_portrait].map((image) => {
                 const color_theme = {
                     bright: {
@@ -104,21 +106,52 @@ import ScarletLogo from "./scarlet-logo.astro";
             });
         }
 
-        if ( navbar_options.indexOf(active_section) >= 0 ) { // we are on a navbar-section
-            const in_new_section = active_section !== last_section;
+        if ( navbar_options.indexOf(active_section) >= 0 ) { // if we are on a section labeled on the navbar
+            remove_last_nav_section_styles();
+            const li = document.querySelector(`li#${active_section}`);
+            li.classList.add('active');
             
-            if (in_new_section) { //asign the "active section styles" whenever we enter a new section
-                remove_last_nav_section_styles();
-                const li = document.querySelector(`li#${active_section}`);
-                li.classList.add('active');
-                
-                change_theme('dark');
-            }
+            change_theme('dark');
         } else if(which_option >= 0 ) { //were not on a navbar-section (portrait or contact-us)
             remove_last_nav_section_styles();
         }
         last_section = active_section; ///updating the last_section
+    } // to set in which section we have scrolled currently 
+    const scrollDiv = (section: any, toggle_nav: boolean = true) => {
+        if (!in_desktop && toggle_nav) toggleNav();
+        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? -100:-30);
+        window.scrollTo({top: y, behavior: 'smooth'});
     }
+
+    const remove_event_listeners = () => {
+        timeout_assign = setTimeout(() => {
+            responsive_navbar.map((option) => { // remove navigation
+                    const section = document.querySelector(`section#${option}`); 
+                    const li = document.querySelector(`li#${option}-mobile`);
+                    li.removeEventListener("click", () => { scrollDiv(section); })
+                });
+        },0);
+    }
+    timeout_assign = setTimeout(() => { // assign the page navigation 
+        const contact_section = document.querySelector("section#contact-us"); //contact 
+        responsive_navbar.map((option) => {
+            const section = document.querySelector(`section#${option}`); 
+            const li = document.querySelector(`li#${option}${in_desktop ? '':'-mobile'}`);
+            li.addEventListener("click", () => { scrollDiv(section);  })
+        });
+        if (in_desktop) { // setting aditional navigation buttons
+            const contact_btn = document.querySelector("button#contact-us");
+            contact_btn.addEventListener("click", () => { scrollDiv(contact_section);  })
+        }
+        
+        const portrait = document.querySelector("section#portrait") // portrait and logo
+        const scarlet_logo = document.querySelector("#scarlet-logo");
+        scarlet_logo.addEventListener("click", () => { scrollDiv(portrait, false) });
+
+        const contact_us = document.querySelector("button#about-contact-us");
+        contact_us.addEventListener("click", () => { scrollDiv(contact_section, false) });
+    }, 0); //executed right away
+    
     const handle_scroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         const sections = document.querySelectorAll("section");
@@ -129,45 +162,17 @@ import ScarletLogo from "./scarlet-logo.astro";
             const offsetBottom = offsetTop + section.offsetHeight;
 
             if ( scrollPosition >= offsetTop && scrollPosition < offsetBottom ) {
-                setActiveSection(navbar[i].replace(/\s+/g, "-").toLowerCase());
+                const section_name = navbar[i].replace(/\s+/g, "-").toLowerCase();
+                current_section = section_name;
+                if (current_section === last_section) return; // If while scrolling the section hasn't changed don't execute the following
+                setActiveSection(section_name);
+                const DOMSection = document.querySelector(`section#${section_name}`)
+                DOMSection.classList.add('show');
                 break;
             }
         }
     };
-    handle_scroll(); // for setting in which section we currently load in 
-    const scrollDiv = (section: any, toggle_nav: boolean = true) => {
-        if (!in_desktop && toggle_nav) toggleNav();
-        const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? -100:-30);
-        window.scrollTo({top: y, behavior: 'smooth'});
-    }
-    const remove_event_listeners = () => {
-        timeout_assign = setTimeout(() => {
-            responsive_navbar.map((option) => { // remove navigation
-                    const section = document.querySelector(`section#${option}`); 
-                    const li = document.querySelector(`li#${option}-mobile`);
-                    li.removeEventListener("click", () => { scrollDiv(section); })
-                });
-        },0);
-    }
-    const assign_event_listeners = (() => {
-        timeout_assign = setTimeout(() => { // assign navigation
-            responsive_navbar.map((option) => {
-                const section = document.querySelector(`section#${option}`); 
-                const li = document.querySelector(`li#${option}${in_desktop ? '':'-mobile'}`);
-                li.addEventListener("click", () => { scrollDiv(section);  })
-            });
-            if (in_desktop) { // setting aditional navigation buttons
-                const contact_section = document.querySelector("section#contact-us"); //contact 
-                const contact_btn = document.querySelector("button#contact-us");
-                contact_btn.addEventListener("click", () => { scrollDiv(contact_section);  })
-            }
-            
-            const portrait = document.querySelector("section#portrait") // portrait and logo
-            const scarlet_logo = document.querySelector("#scarlet-logo");
-            scarlet_logo.addEventListener("click", () => { scrollDiv(portrait, false) })
-
-        }, 0);
-    })(); //executed right away
+    handle_scroll(); // to determine the focused section on the web page.  
     window.addEventListener("scroll", handle_scroll);
 </script>
 <style>

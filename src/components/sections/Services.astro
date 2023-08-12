@@ -1,4 +1,5 @@
 ---
+import ServicesBackground from "../svg/service-background.astro";
 const services_1 = [
     {
         icon: 'analytics',
@@ -43,18 +44,8 @@ const services_2 = [
     },
 ]
 ---
-<script>
-    import { typeWritter } from '../../libs';
-    
-    (async function init() {
-        await typeWritter("Our Digital", "our-digital", 50);
-        await typeWritter("Marketing Expertise", "marketing-expertise", 50);
-        const description_text = 'With Scarlett, experience unmatched expertise, tailored strategies, and a dedication to your success.'; 
-        await typeWritter(description_text, "description-text", 0.8); 
-    })()
-</script>
-<section class="relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden" id="services">
-    <div class="background-image absolute top-0 left-[600px] h-full w-full z-20" />
+<section class="fade-in relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden" id="services">
+    <ServicesBackground class_list="background-image absolute max-lg:top-[-600px] lg:top-[10px] left-0 lg:left-[460px] h-full w-full z-20" />
     <div class="services-container items-center relative w-[85vw] mx-auto z-30">
         {
             services_1.map( ({ class_name, class_icon, name, description, icon }, index) => (
@@ -71,7 +62,7 @@ const services_2 = [
             <h1 id="marketing-expertise" class="service-description-content">
                 <!-- Marketing Expertise -->
             </h1>
-            <p id="description-text" class="text-white-200 mt-3 text-lg lg:text-xl min-h-[56px]">
+            <p id="description-text" class="text-white-200 mt-3 text-lg lg:text-xl min-h-[112px] lg:min-h-[56px]">
                 <!-- With Scarlett, experience unmatched expertise, tailored strategies, and a 
                 dedication to your success. -->
             </p>
@@ -86,9 +77,34 @@ const services_2 = [
         }
     </div>
 </section>
+<script>
+    import { typeWritter } from '../../libs';
+    
+    (async function init() {
+        const section = document.querySelector("section#services");
+        let first = true;
+        section.addEventListener("animationend", async () => {
+            if (first) {
+                first = false;
+                await typeWritter("Our Digital", "our-digital", 50);
+                await typeWritter("Marketing Expertise", "marketing-expertise", 50);
+                const description_text = 'With Scarlett, experience unmatched expertise, tailored strategies, and a dedication to your success.'; 
+                await typeWritter(description_text, "description-text", 0.8); 
+            }
+            setTimeout(() => {
+                // section.classList.remove('show');
+                section.classList.add('float');
+            }, 1350)
+        })
+    })()
+</script>
 <style>
     .background-image {
-        background-image: url("/img/services/background-img.svg")
+        opacity: 0;
+        transition: all 500ms ease-in-out;
+    }
+    section.show .background-image {
+        opacity: 1;
     }
     .services-container {
         display: grid; 
@@ -104,30 +120,32 @@ const services_2 = [
         column-gap: 32px;
         row-gap: 32px;
     }
-    .service {
+    section .service {
         opacity: 0;
         transform: translateY(20%);
-        animation: fade-from-below 520ms ease-in-out forwards;
         @apply flex flex-col bg-black-200 p-8 rounded-lg max-w-[580px] lg:max-w-[350px] min-h-[280px];
+    }
+    section.show .service {
+        animation: fade-from-below 520ms ease-in-out forwards;
     }
     @keyframes fade-from-below {
         from {
             opacity: 0;
             transform: translateY(20%);
-        }to{
+        }to {
             opacity: 1;
             transform: translateY(0%);
         }
     }
-    .service-1 { 
+    section.show .service-1 { 
         grid-area: service-1;
         animation-delay: 100ms;
     }
-    .service-2 { 
+    section.show .service-2 { 
         grid-area: service-2;
         animation-delay: 300ms;
     }
-    .service-3 { 
+    section.show .service-3 { 
         grid-area: service-3;
         animation-delay: 500ms;
     }
@@ -136,17 +154,17 @@ const services_2 = [
         @apply grow flex flex-col max-w-[580px] max-lg:py-8;
     }
     .service-description-content {
-        @apply max-w-[720px] font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] lg:min-h-[58px] min-h-[];
+        @apply max-w-[720px] font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] min-h-[36px] lg:min-h-[58px];
     }
-    .service-4 { 
+    section.show .service-4 { 
         grid-area: service-4;
         animation-delay: 700ms;
     }
-    .service-5 { 
+    section.show .service-5 { 
         grid-area: service-5;
         animation-delay: 900ms;
     }
-    .service-6 { 
+    section.show .service-6 { 
         grid-area: service-6;
         animation-delay: 1100ms;
     }
