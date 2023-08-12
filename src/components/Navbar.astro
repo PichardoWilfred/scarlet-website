@@ -1,11 +1,11 @@
 ---
 
 const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
-
+import ScarletLogo from "./scarlet-logo.vue";
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
-        <img id="scarlet-logo" src="/img/nav-bar-logo.svg" class="cursor-pointer w-[25px] lg:w-[40px] object-contain" />
+        <ScarletLogo id="scarlet-logo" class="bright cursor-pointer h-[25px] w-[25px] lg:h-[40px] lg:w-[40px] object-contain" />
         <ul class="hidden lg:flex justify-center unstyled">
             { menu_items.map((title) => (
                 <li class="relative font-epilogue mr-12 last:mr-0 after:content-[''] after:bg-red after:absolute 
@@ -71,37 +71,54 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
     let last_section = ''; // for removing the last "section active styles"
     const setActiveSection = (active_section) => { // setting the navbar "active section styles"
         const which_option =  ['contact-us', 'portrait'].indexOf(active_section);
-        // console.log(active_section);
+        const prisma = document.querySelector("svg#scarlet-logo");
+        const prisma_portrait = document.querySelector("svg#prisma");
+        // const store = document.querySelector("span#store");
         // active_section !== last_section ? console.log('%c new section', 'color: green;'):console.log('%c same section', 'color: yellow;');
-        const remove_last = () => { //if the last section is not on the navbar delete the active
+        const remove_last_nav_section_styles = () => { //if the last section is not on the navbar delete the active
             if (  last_section === '' ) return; 
             
             if (navbar_options.indexOf(last_section) !== -1) { // If the last section is in the navbar, remove the "active styles"
                 const last_li = document.querySelector(`li#${last_section}`);
                 last_li.classList.remove('active');
             }
+            if (active_section === 'portrait') change_theme('bright')
+        }
 
-            if (active_section === 'portrait') {
-                console.log('bright!');
-            }
-            
+        const change_theme = (theme: string) => {
+            [prisma, prisma_portrait].map((image) => {
+                const color_theme = {
+                    bright: {
+                        last: 'dark',
+                        new: 'bright'
+                    },
+                    dark: {
+                        last: 'bright',
+                        new: 'dark'
+                    }
+                }
+                if (!image.classList.contains(color_theme[theme].new)) {
+                    image.classList.remove(color_theme[theme].last);
+                    image.classList.add(color_theme[theme].new);
+                }
+            });
         }
 
         if ( navbar_options.indexOf(active_section) >= 0 ) { // we are on a navbar-section
             const in_new_section = active_section !== last_section;
             
             if (in_new_section) { //asign the "active section styles" whenever we enter a new section
-                remove_last();
+                remove_last_nav_section_styles();
                 const li = document.querySelector(`li#${active_section}`);
                 li.classList.add('active');
-                console.log('not bright!');
+                
+                change_theme('dark');
             }
         } else if(which_option >= 0 ) { //were not on a navbar-section (portrait or contact-us)
-            remove_last();
+            remove_last_nav_section_styles();
         }
         last_section = active_section; ///updating the last_section
     }
-
     const handle_scroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         const sections = document.querySelectorAll("section");
@@ -122,7 +139,6 @@ const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
         if (!in_desktop && toggle_nav) toggleNav();
         const y = section.getBoundingClientRect().top + window.pageYOffset + (in_desktop ? -100:-30);
         window.scrollTo({top: y, behavior: 'smooth'});
-        
     }
     const remove_event_listeners = () => {
         timeout_assign = setTimeout(() => {

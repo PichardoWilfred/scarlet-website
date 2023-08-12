@@ -28,7 +28,7 @@ import ScarletLogo from "../scarlet-logo.vue";
     </div>
     <div class="flex relative justify-center items-center lg:max-w-[500px] lg:h-[600px] py-10 z-10">
         <img id="neo-bg" class="neo-background absolute top-[60%] lg:top-[58%] lg:left-[-80%] w-[1200px] lg:w-[300%] max-w-none" src="/img/portrait/neo-ground.svg" />
-        <!-- <scarlet-logo class="prisma flex max-w-[60%] sm:max-w-[350px] z-20" client:load /> -->
+        <ScarletLogo class="prisma bright flex max-w-[60%] sm:max-w-[350px] z-20" />
     </div>
     <div class="lg:hidden absolute w-full bottom-0 left-0 h-[10vh] bg-gradient-to-t from-black z-10" />
 </section>
@@ -72,7 +72,7 @@ import ScarletLogo from "../scarlet-logo.vue";
     })();
     // now we need to chain the animations
 </script>
-<style is:global>
+<style>
 section.portrait p.description {
     opacity: 0;
     transition: all 150ms ease-in-out;
@@ -120,9 +120,9 @@ svg.prisma {
         opacity: 0;
     }
     img.neo-background.slide-up {
-        animation: slow-slide-from-bottom 600ms ease-out forwards;
+        animation: bg-slide-from-bottom 600ms ease-out forwards;
     }
-    @keyframes slow-slide-from-bottom {
+    @keyframes bg-slide-from-bottom {
         from {
             opacity: 0;
             transform: translateY(10%);
@@ -136,22 +136,22 @@ svg.prisma {
     }
     svg.prisma.show {
         opacity: 1;
-        animation: slide-from-bottom 900ms ease-in-out;
+        animation: prisma-slide-from-bottom 900ms ease-in-out forwards;
     }
-    @keyframes slide-from-bottom {
+    @keyframes prisma-slide-from-bottom {
         from {
             opacity: 0;
             transform: translateY(65%);
         }
-        50% {
-            opacity: 1;
-        }
         to {
+            opacity: 1;
             transform: translateY(4%);
         }
     }
     svg.prisma.float {
         opacity: 1;
+        
+        transform: translateY(4%);
         animation: float 5s cubic-bezier(.26,.06, 0, .21) infinite;
     }
 }
