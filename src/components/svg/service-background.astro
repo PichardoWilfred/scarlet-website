@@ -31,7 +31,7 @@ const { class_list = '' } = Astro.props;
 </svg>
 <style lang="scss" is:global>
     
-    section.show {
+    section#services.show {
         path.particle {
             transform-box: fill-box;
             transform-origin: center;
@@ -81,13 +81,12 @@ const { class_list = '' } = Astro.props;
         }
     }
     // deactivate temporarily
-    section.float  {
+    section#services.float  {
         path.particle {
-            
             translate: 0px;
-            animation: float 1400ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite forwards;
+            animation: particle-float 1400ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite forwards;
         }
-        @keyframes float {
+        @keyframes particle-float {
             0% {
                 transform: translateY(0px) rotate(-20deg);
             }
@@ -100,6 +99,7 @@ const { class_list = '' } = Astro.props;
         }
 
         path.particle-1 {
+            animation-duration: 10000ms;
             animation-delay: 100ms;
         }
         path.particle-2 {
