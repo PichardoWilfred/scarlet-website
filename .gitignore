@@ -17,8 +17,5 @@ pnpm-debug.log*
 .env
 .env.production
 
-#run pnpm only on the destkop
-pnpm-lock.yaml
-
 # macOS-specific files
 .DS_Store
