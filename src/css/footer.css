@@ -1,0 +1,9 @@
+svg:is(.instagram, .twitter, .facebook, .linked-in) {
+    @apply cursor-pointer;
+}
+svg:is(.instagram, .twitter, .facebook, .linked-in) path {
+    @apply transition-all;
+}
+svg:is(.instagram, .twitter, .facebook, .linked-in):hover path {
+    stroke: #FFF;
+}

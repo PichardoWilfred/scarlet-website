@@ -1,5 +1,5 @@
 @import "./portrait.css";
-
+@import "./footer.css";
 section.fade-in { opacity: 0; }
 section.fade-in.show {
     opacity: 0;
