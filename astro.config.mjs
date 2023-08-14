@@ -6,6 +6,9 @@ export default defineConfig({
   ...(process.env.GH_ENV) ? {
       site:  process.env.GH_SITE,
       base:  process.env.GH_BASE,
-    } : {}
+    } : {},
+    experimental: {
+      assets: true
+    },
 });
 

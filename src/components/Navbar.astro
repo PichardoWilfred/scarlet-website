@@ -1,7 +1,8 @@
 ---
-
-const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
+import { Image } from 'astro:assets';
 import ScarletLogo from "./scarlet-logo.astro";
+import Menu from "../assets/menu.astro";
+const menu_items = ['Services', 'About Us', 'Latest Work', 'Testimonials'];
 ---
 <header class="bg-black sticky top-0 left-0 font-epilogue z-50">
     <nav class="flex justify-between items-center px-4 lg:px-12 py-6 text-white">
@@ -19,7 +20,7 @@ import ScarletLogo from "./scarlet-logo.astro";
             Contact Us
         </button>
         <button id="toggle-navigation" type="button" class="flex lg:hidden min-w-[unset] py-1">
-            <img src="/img/menu.svg" class="cursor-pointer w-[35px] object-contain" />
+            <Menu />
         </button>
     </nav>
     <div id="mobile-menu" class="fixed hidden justify-end w-screen h-screen z-40">

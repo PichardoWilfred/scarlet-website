@@ -1,5 +1,5 @@
 ---
-
+import { Icon } from 'astro-icon';
 ---
 <footer class="flex flex-col bg-black w-full min-h-[20vh] border-t border-black-100">
     <div class="flex max-md:flex-col max-md:items-start justify-between w-full flex-wrap px-8 lg:px-20 py-12 border-b border-black-100 max-md:space-y-10">
@@ -28,10 +28,10 @@
                 Follow us
             </h1>
             <div class="flex justify-between flex-wrap mt-3">
-                <img src="/img/footer/twitter.svg" alt="twitter" class="w-[23px] me-3" />
-                <img src="/img/footer/instagram.svg" alt="instagram" class="w-[25px] me-3" />
-                <img src="/img/footer/linkedin.svg" alt="linkedin" class="w-[25px] me-3" />
-                <img src="/img/footer/facebook.svg" alt="twitter" class="w-[25px] me-3" />
+                <Icon name="twitter" alt="twitter" class="w-[23px] me-3" />
+                <Icon name="instagram" alt="instagram" class="w-[25px] me-3" />
+                <Icon name="linkedin" alt="linkedin" class="w-[25px] me-3" />
+                <Icon name="facebook" alt="twitter" class="w-[25px] me-3" />
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         </h3>
         <h3 class="flex items-center md:justify-between max-md:mx-auto max-w-[320px] text-red-400 font-rubik text-xl">
             Scarlet
-            <img class="ms-2" src="/img/footer/logo.svg" alt="scarlet-logo"/>
+            <Icon name="scarlet-logo" class="ms-4 w-[40px] pb-2"/>
         </h3>
     </div>
 </footer>

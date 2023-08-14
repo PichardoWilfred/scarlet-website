@@ -1,5 +1,6 @@
 ---
-import ServicesBackground from "../svg/service-background.astro";
+import { Icon } from 'astro-icon';
+import ServicesBackground from "../../assets/service/service-background.astro";
 const services_1 = [
     {
         icon: 'analytics',
@@ -14,7 +15,7 @@ const services_1 = [
         name: 'Website Design & Development',
         description: 'Scarlett delivers captivating websites tailored to your brand and business objectives.'
     },
-]
+];
 const services_2 = [
     {
         icon: 'camera',
@@ -42,15 +43,15 @@ const services_2 = [
         name: 'Content Writing',
         description: "Engaging and SEO-driven content that boosts your brand's online visibility and storytelling."
     },
-]
+];
 ---
 <section class="fade-in relative flex items-center justify-center lg:min-h-[70vh] w-full pt-[4rem] pb-[8rem] text-white overflow-hidden" id="services">
     <ServicesBackground class_list="background-image absolute max-lg:top-[10%] lg:top-[10px] left-0 lg:left-[180px] h-full w-full z-20" />
     <div class="services-container items-center relative w-[85vw] mx-auto z-30">
-    {
+        {
             services_1.map( ({ class_name, class_icon, name, description, icon }, index) => (
                 <div class={`service service-${index + 1}`}>
-                    <img src={`img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <Icon name={icon} class={`mb-3 ${class_icon}`} />
                     <h2 class={`font-bold font-rubik text-2xl mb-2 ${class_name}`}>{ name }</h2>
                     <p class="text-white-300 leading-1">{ description }</p>
                 </div>))
@@ -70,7 +71,7 @@ const services_2 = [
         {
             services_2.map( ({ class_name, class_icon, name, description, icon }, index) => (
                 <div class={`service service-${(index + 3)}`}>
-                    <img src={`img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <Icon name={icon} class={`mb-3 ${class_icon}`} />
                     <h2 class={`font-bold font-rubik text-2xl mb-2`+` `+class_name}>{ name }</h2>
                     <p class="text-white-300 leading-1">{ description }</p>
                 </div>))

@@ -1,7 +1,7 @@
 ---
 import ScarletLogo from "../scarlet-logo.astro";
+import NeoGround from "../../assets/portrait/neo-ground.astro";
 ---
-
 <section class="portrait relative max-lg:min-h-[130vh] sm:h-screen flex max-lg:flex-col overflow-hidden justify-around " id="portrait">
     <div class="relative flex justify-center max-md:px-6 max-md:justify-center z-20">
         <div class="max-sm:h-[60vh] sm:min-w-[380px] xl:min-w-[640px] py-6 sm:py-20">
@@ -27,7 +27,7 @@ import ScarletLogo from "../scarlet-logo.astro";
         </div>
     </div>
     <div class="flex relative justify-center items-center lg:max-w-[500px] lg:h-[600px] py-10 z-10">
-        <img id="neo-bg" class="neo-background absolute top-[60%] lg:top-[58%] lg:left-[-80%] w-[1200px] lg:w-[300%] max-w-none" src="/img/portrait/neo-ground.svg" />
+        <NeoGround />
         <ScarletLogo id="prisma" class_="prisma bright portrait flex w-[3000px] max-w-[60%] sm:max-w-[350px] z-20" width="588" height="747" />
     </div>
     <div class="lg:hidden absolute w-full bottom-0 left-0 h-[10vh] bg-gradient-to-t from-black z-10" />

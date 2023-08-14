@@ -42,10 +42,10 @@ svg.prisma {
     animation: float 7s cubic-bezier(.26,.06, 0, .21) infinite;
 }
 @media (min-width: 768px) {
-    img.neo-background {
+    svg.neo-background {
         opacity: 0;
     }
-    img.neo-background.slide-up {
+    svg.neo-background.slide-up {
         animation: bg-slide-from-bottom 600ms ease-out forwards;
     }
     @keyframes bg-slide-from-bottom {
