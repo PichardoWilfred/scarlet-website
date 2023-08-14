@@ -23,7 +23,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v0
     env:
-      GH_SITE: https://PichardoWilfred.github.io/scarlet-website
+      GH_SITE: https://PichardoWilfred.github.io/scarlet-website/
       GH_BASE: /scarlet-website
       GH_ENV: true
         #with:
