@@ -50,7 +50,7 @@ const services_2 = [
     {
             services_1.map( ({ class_name, class_icon, name, description, icon }, index) => (
                 <div class={`service service-${index + 1}`}>
-                    <img src={`/scarlet-website/img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <img src={`img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
                     <h2 class={`font-bold font-rubik text-2xl mb-2 ${class_name}`}>{ name }</h2>
                     <p class="text-white-300 leading-1">{ description }</p>
                 </div>))
@@ -70,7 +70,7 @@ const services_2 = [
         {
             services_2.map( ({ class_name, class_icon, name, description, icon }, index) => (
                 <div class={`service service-${(index + 3)}`}>
-                    <img src={`/scarlet-website/img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
+                    <img src={`img/services/${icon}.svg`} class={`mb-3 ${class_icon}`} />
                     <h2 class={`font-bold font-rubik text-2xl mb-2`+` `+class_name}>{ name }</h2>
                     <p class="text-white-300 leading-1">{ description }</p>
                 </div>))

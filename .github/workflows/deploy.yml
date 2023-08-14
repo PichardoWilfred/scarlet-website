@@ -23,8 +23,8 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v0
     env:
-      GH_SITE: https://PichardoWilfred.github.io/scarlet-website/
-      GH_BASE: /scarlet-website
+      GH_SITE: https://PichardoWilfred.github.io/
+      GH_BASE: /scarlet-website/scarlet-website
       GH_ENV: true
         #with:
             # path: . # The root location of your Astro project inside the repository. (optional)
