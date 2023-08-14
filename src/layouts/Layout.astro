@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import '../css/main.css';
 export interface Props {
 	title: string;
 }
@@ -22,7 +23,6 @@ const { title } = Astro.props;
 		<meta property="og:image" content="/scarlet-og.png" />
 
 		<title>{ title }</title>
-		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
 		<Navbar />
