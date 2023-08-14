@@ -4,6 +4,6 @@ import vue from "@astrojs/vue";
 
 export default defineConfig({
   integrations: [tailwind(), vue()],
-  site: 'https://PichardoWilfred.github.io',
-  base: '/scarlet-website',
+  // site: 'https://PichardoWilfred.github.io',
+  // base: '/scarlet-website',
 });
