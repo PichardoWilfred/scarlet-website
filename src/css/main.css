@@ -1,9 +1,10 @@
 @import "./portrait.css";
 @import "./footer.css";
+
 section.fade-in { opacity: 0; }
 section.fade-in.show {
     opacity: 0;
-    animation: fade-in 800ms ease-in-out forwards;
+    animation: fade-in 450ms ease-in-out forwards;
 }
 @keyframes fade-in {
     from { opacity: 0; }
