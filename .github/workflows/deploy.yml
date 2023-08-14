@@ -25,6 +25,7 @@ jobs:
     env:
       GH_SITE: https://PichardoWilfred.github.io
       GH_BASE: /scarlet-website
+      GH_ENV: true
 
         #with:
             # path: . # The root location of your Astro project inside the repository. (optional)
