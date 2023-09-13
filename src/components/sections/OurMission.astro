@@ -1,0 +1,62 @@
+---
+    import OurMission_picture from "../../assets/latest-work/our-mission.astro";
+    const latest_work = [
+        {
+            name: 'Artem - Digital Marketing campaign',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-1'
+        },
+        {
+            name: 'Mayhem - Search Engine Optimization',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-2'
+        },
+        {   
+            class_name: "md:max-w-[300px]",
+            name: 'Basic - Pay Per Click (PPC)',
+            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.',
+            icon: 'image-3'
+        }
+    ]
+---
+<section class="fade-in flex flex-col min-h-[80vh] text-white bg-black px-8 lg:px-28 py-[2rem] lg:py-[6rem]" id="our-mission">
+    <h1 class="font-epilogue font-bold text-3xl lg:text-[3rem] lg:leading-[3.6rem] mb-3">
+        Our Mission
+    </h1>
+    <div class="flex flex-wrap content-center justify-center xl:justify-between">
+        <div class="flex flex-col flex-wrap xl:max-w-[880px] mt-4 mb-10">
+            <p class="text-white-200 text-md lg:text-[1.25rem] leading-[1.85rem] ">
+                At <span class="underline text-white cursor-pointer hover:text-red-300 transition">Scarlet</span>, we are committed to empowering businesses of all sizes to thrive and achieve their fullest potential. 
+                Whether you're a dynamic startup with big dreams, a small business aiming for steady expansion, or a corporation looking to 
+                streamline your operations, we're here to support you every step of the way.
+            </p>
+            <h6 class="font-bold text-[1.8rem] my-4">How We Help</h6>
+            <ul class="text-[1.2rem] space-y-5 text-white-200">
+                <li>
+                    <b class="text-white">Startup Partnerships:</b> For startups, we offer strategic guidance, funding insights, and technology solutions to turn your innovative ideas into reality.
+                </li>
+                <li>
+                    <b class="text-white">Small Business Solutions:</b> Small businesses benefit from our tailored strategies, digital marketing expertise, and automation tools designed to boost efficiency and growth
+                </li>
+                <li>
+                    <b class="text-white">Corporate Efficiency:</b> Corporations can leverage our automation expertise to optimize processes, reduce costs, and enhance productivity across the board.
+                </li>
+            </ul>
+            <h6 class="font-bold text-[1.4em] mb-4 mt-10">
+                Join us on the journey to success. Together, we'll create a brighter <span class="text-red-300">future</span> for your business.
+            </h6>
+        </div>
+        <OurMission_picture />
+</section>  
+<!-- {
+    latest_work.map(({ class_name, name, description, icon }, index) => {
+        return  (
+            <div class="flex flex-col w-full max-w-[340px] lg:max-w-[28vw] me-8 mb-8">
+                <img src={`/img/latest-work/${icon}.png`} alt={ icon } class="rounded-xl mb-5 max-w-none" />
+                <h2 class={`flex items-center font-bold text-white text-2xl lg:text-3xl mb-4 lg:min-h-[72px] ${class_name}`}>{ name }</h2>
+                <p class="text-white-200 lg:text-xl">{ description }</p>
+            </div>
+        )
+    })
+} -->
+</div>
