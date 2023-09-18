@@ -1,0 +1,23 @@
+<svg width="47" height="47" class="check-circle w-[35px] h-[35px] me-6" viewBox="0 0 47 47" fill="none">
+    <path d="M42.6944 21.5024V23.2878C42.692 27.4727 41.3369 31.5447 38.8312 34.8965C36.3255 38.2483 32.8035 40.7003 28.7903 41.8869C24.7772 43.0734 20.488 42.9309 16.5625 41.4806C12.637 40.0304 9.2854 37.35 7.00766 33.8393C4.72993 30.3286 3.64806 26.1756 3.92341 21.9998C4.19877 17.824 5.81658 13.8491 8.53558 10.6679C11.2546 7.48667 14.9291 5.2696 19.011 4.34733C23.093 3.42506 27.3638 3.84701 31.1864 5.55025" 
+    stroke="#AB000A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M42.6943 7.76263L23.2878 27.1886L17.4658 21.3666" stroke="#AB000A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<style is:global>
+    .notification.show .check-circle path {
+        animation: blink 800ms cubic-bezier(0.25, 0.06, 0.5, 1);
+        animation-delay: 380ms;
+        @apply transition-all;
+    }
+    @keyframes blink {
+        0% {
+            stroke: #AB000A;
+        }
+        50% {
+            stroke: #FF5A64;
+        }
+        100% {
+            stroke: #AB000A;
+        }
+    }
+</style>
