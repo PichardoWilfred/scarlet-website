@@ -6,16 +6,16 @@ import GlobePicture from "../../assets/contact/globe-picture.astro";
         Contact Us
     </h1>
     <div class="flex max-[1620px]:flex-col-reverse flex-wrap items-center justify-center max-[1620px]:justify-center min-[1620px]:justify-between">
-        <form class="max-w-[540px] w-full my-10 lg:me-5" id="contact" action="">
+        <form class="max-w-[540px] w-full my-10 lg:me-5" id="contact" action="" >
             <div class="flex flex-col">
-                <input type="text" name="email" id="email" placeholder="info@email.com"
-                class="bg-black-400 text-base rounded mb-2 p-3 placeholder:text-white-300 max-lg:placeholder:text-base focus-within:outline-none">
+                <input name="email" type="text" id="email" placeholder="info@email.com" autocomplete="false" 
+                class="bg-black-400 text-base rounded mb-2 p-3 placeholder:text-white-300 max-lg:placeholder:text-base focus-within:outline-none transition-all">
                 <span id="error-label" class="text-white-200 min-h-[24px]"></span>
             </div>
             <div class="flex flex-col mt-3">
-                <textarea placeholder="Tell us what you need" name="message" 
+                <textarea name="message" id="message-text" placeholder="Tell us what you need" 
                 class="bg-black-400 text-base rounded mb-2 p-3 placeholder:text-white-300 max-lg:placeholder:text-base
-                focus-within:outline-none resize-none min-h-[220px]"/>
+                focus-within:outline-none resize-none min-h-[220px] transition-all"/>
             </div>
             <button type="submit" class="mt-6 flex items-center justify-center font-bold uppercase text-lg lg:text-2xl text-white 
             bg-gradient-to-r to-red-400 from-red-100 w-full py-3 tracking-[8px] rounded">
@@ -24,8 +24,8 @@ import GlobePicture from "../../assets/contact/globe-picture.astro";
         </form>
         <!-- w-full max-w-[520px]  -->
         <div class="flex flex-wrap lg:min-w-[54%] justify-center items-center max-[772px]:my-8 max-[1620px]:my-12">
-            <div class="relative w-[420px] h-[420px] z-20"> <!-- w-full max-w-[520px] -->
-                <GlobePicture />
+            <div class="relative w-full h-[360px] lg:w-[420px] lg:h-[420px] z-20"> <!-- w-full max-w-[520px] -->
+                <GlobePicture class="w-[350px] h-[350px] lg:w-[450px] lg:h-[450px]" />
             </div>
             <div class="relative w-full max-w-[540px] lg:max-w-[400px] lg:ms-8 max-lg:mt-14 z-30">
                 <h2 class="font-bold text-[2rem] text-white font-epilogue">
@@ -40,23 +40,66 @@ import GlobePicture from "../../assets/contact/globe-picture.astro";
 </section>
 
 <script>
+    import emailjs from 'emailjs-com';
+    import { EMAILJS_USER_ID } from "../../../emailjs.config"
+
     const form = document.querySelector("form#contact");
 
     const input = document.querySelector("input#email");
+    const text_area = document.querySelector("textarea#message-text");
     const error_label = document.querySelector("span#error-label")
     
-    form.addEventListener('submit', (e) => {
+    async function sendEmail(){
+        try {
+            const textarea_value = text_area.value;
+            const input_value = input.value;
+            const response = await emailjs.send(
+                'service_nrb899d',
+                'template_uu5jyrf',
+                {
+                    from_name: input_value,
+                    message: textarea_value,
+                },
+                EMAILJS_USER_ID 
+            );
+            } catch (error) {
+                console.error('Email could not be sent:', error);
+            }
+    }
+    form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const { value } = input;
-            const valid =  /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g.test(value) && value !== '';
+            const valid =  /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/g.test(input.value) && input.value !== '';
             if (valid) {
+                form.classList.add("sended");
+                // await sendEmail();
                 
-                console.log("what");
-                // modal_content.classList.add('dissapearing')
+                form.classList.add("removed");
+                form.classList.remove("sended");  
+
+                if (form.classList.contains("removed")) {
+                    text_area.value = '';
+                    input.value = '';
+
+                    form.classList.remove("removed");
+                }
+
             }else {
                 error_label.textContent = 'Please enter a valid email.'
                 input.focus();
                 input.classList.add('invalid');
             }
+
         });
 </script>
+<style lang="scss">
+    form.sended {
+        input, textarea {
+            @apply text-white-300;
+        }
+    }
+    form.removed {
+        input, textarea {
+            @apply text-black-400;
+        }
+    }
+</style>
