@@ -48,3 +48,14 @@
         </div>
         <OurMission_picture />
 </section>  
+<script>
+    const section = document.querySelector("section#our-mission");
+    section.addEventListener("animationend", () => {
+        setTimeout( () => {
+            if (section.classList.contains("show")) {
+                const svg = document.querySelector("svg.our-mission");
+                svg.classList.add("idle");
+            }
+        }, 1800)
+    })
+</script>
