@@ -140,7 +140,9 @@ const menu_items = ['Services', 'About Us', 'Our Mission', ];
         responsive_navbar.map((option) => {
             const section = document.querySelector(`section#${option}`); 
             const li = document.querySelector(`li#${option}${in_desktop ? '':'-mobile'}`);
-            li.addEventListener("click", () => { scrollDiv(section);  })
+            const a = document.querySelector(`a#footer-${option}`);
+            a.addEventListener("click", () => { scrollDiv(section);  });
+            li.addEventListener("click", () => { scrollDiv(section);  });
         });
         if (in_desktop) { // setting aditional navigation buttons
             const contact_btn = document.querySelector("button#contact-us");
