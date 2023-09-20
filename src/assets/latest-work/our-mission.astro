@@ -82,6 +82,10 @@
             opacity: 0;
             animation: appear 500ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards;
             animation-delay: 800ms;
+            @apply transition-all;
+        }
+        ellipse {
+            @apply transition-all;
         }
         path.bright {
             opacity: 0;
@@ -135,7 +139,6 @@
         circle, ellipse {
             animation: blink 2200ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards infinite !important;
             animation-delay: 800ms;
-            @apply transition-all;
         }
         .star-1 { animation-delay: 300ms !important; }
         .star-2 { animation-delay: 400ms !important; }
@@ -172,9 +175,7 @@
         path.bright-3 {
             animation-delay: 200ms !important;
         }
-
     }
-    // growInOut
     @keyframes grow-in-out { 
             0% {
                 transform: scale(1);
@@ -185,16 +186,16 @@
             100% {
                 transform: scale(1);
             }
+    }
+    @keyframes blink {
+        0% {
+            opacity: 1;
         }
-        @keyframes blink {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        50% {
+            opacity: 0;
         }
+        100% {
+            opacity: 1;
+        }
+    }
 </style>
