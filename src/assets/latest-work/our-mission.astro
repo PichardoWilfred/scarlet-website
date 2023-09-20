@@ -1,4 +1,4 @@
-<svg viewBox="0 0 434 521" class="our-mission w-full h-full max-w-[600px] max-h-[900px] max-lg:translate-y-[-3vw] xl:translate-y-[-3vw]" fill="none">
+<svg viewBox="0 0 434 521" class="our-mission w-full max-w-[600px] max-lg:translate-y-[-3vw] xl:translate-y-[-3vw]" fill="none">
     <circle class="star star-1" cx="252.609" cy="171.263" r="1.19895" transform="rotate(90 252.609 171.263)" fill="#FF5A64"/>
     <ellipse class="star star-2" cx="28.1797" cy="339.882" rx="1.19895" ry="1.5986" transform="rotate(90 28.1797 339.882)" fill="#FF5A64"/>
     <ellipse class="star star-3" cx="1.19895" cy="1.5986" rx="1.19895" ry="1.5986" transform="matrix(4.37114e-08 1 1 -4.37114e-08 373.681 302.684)" fill="#FF5A64"/>
@@ -78,13 +78,10 @@
         path.finger {
             animation: slide-in 800ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards;
         }
-        circle {
+        circle, ellipse {
             opacity: 0;
             animation: appear 500ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards;
             animation-delay: 800ms;
-            @apply transition-all;
-        }
-        ellipse {
             @apply transition-all;
         }
         path.bright {
@@ -117,66 +114,61 @@
                 transform: translateY(0px);
             }
         }
-    }
-    section#our-mission.float {
-        path.bright {
-            animation-delay: 500ms;
-            animation: float 1400ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite forwards;
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
+        // idle
+        svg.our-mission.idle {
+            circle, ellipse {
+                opacity: 1;
+                animation: blink-stars 2200ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards infinite !important;
+                animation-delay: 800ms;
             }
-            50% {
-                transform: translateY(20px);
+                @keyframes blink-stars {
+                    0% {
+                        opacity: 1;
+                    }
+                    50% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+            .star-1 { animation-delay: 300ms !important; }
+            .star-2 { animation-delay: 400ms !important; }
+            .star-3 { animation-delay: 500ms !important; }
+            .star-4 { animation-delay: 600ms !important; }
+            .star-5 { animation-delay: 700ms !important; }
+            .star-6 { animation-delay: 800ms !important; }
+            .star-7 { animation-delay: 900ms !important; }
+            .star-8 { animation-delay: 1000ms !important; }
+            .star-9 { animation-delay: 1100ms !important; }
+            .star-10 { animation-delay: 1200ms !important; }
+            .star-11 { animation-delay: 1300ms !important; }
+            .star-12 { animation-delay: 1400ms !important; }
+            .star-13 { animation-delay: 1500ms !important; }
+            .star-14 { animation-delay: 1600ms !important; }
+            .star-15 { animation-delay: 1700ms !important; }
+            .star-16 { animation-delay: 1800ms !important; }
+            .star-17 { animation-delay: 1900ms !important; }
+            .star-18 { animation-delay: 2000ms !important; }
+            .star-19 { animation-delay: 2100ms !important; }
+            .star-20 { animation-delay: 2200ms !important; }
+            path.bright {
+                opacity: 1 !important;
+                animation: grow-in-out 2200ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite !important;
+                transform-origin: center;
+                @apply transition-all;
             }
-            100% {
-                transform: translateY(0px);
+            path.bright-1 {
+                animation-delay: 600ms !important;
+            }
+            path.bright-2 {
+                animation-delay: 400ms !important;
+            }
+            path.bright-3 {
+                animation-delay: 200ms !important;
             }
         }
-    }
-    svg.our-mission.idle {
-        circle, ellipse {
-            animation: blink 2200ms cubic-bezier(0.25, 0.06, 0.5, 1) forwards infinite !important;
-            animation-delay: 800ms;
-        }
-        .star-1 { animation-delay: 300ms !important; }
-        .star-2 { animation-delay: 400ms !important; }
-        .star-3 { animation-delay: 500ms !important; }
-        .star-4 { animation-delay: 600ms !important; }
-        .star-5 { animation-delay: 700ms !important; }
-        .star-6 { animation-delay: 800ms !important; }
-        .star-7 { animation-delay: 900ms !important; }
-        .star-8 { animation-delay: 1000ms !important; }
-        .star-9 { animation-delay: 1100ms !important; }
-        .star-10 { animation-delay: 1200ms !important; }
-        .star-11 { animation-delay: 1300ms !important; }
-        .star-12 { animation-delay: 1400ms !important; }
-        .star-13 { animation-delay: 1500ms !important; }
-        .star-14 { animation-delay: 1600ms !important; }
-        .star-15 { animation-delay: 1700ms !important; }
-        .star-16 { animation-delay: 1800ms !important; }
-        .star-17 { animation-delay: 1900ms !important; }
-        .star-18 { animation-delay: 2000ms !important; }
-        .star-19 { animation-delay: 2100ms !important; }
-        .star-20 { animation-delay: 2200ms !important; }
-        path.bright {
-            opacity: 1 !important;
-            animation: grow-in-out 2200ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite !important;
-            transform-origin: center;
-            @apply transition-all;
-        }
-        path.bright-1 {
-            animation-delay: 600ms !important;
-        }
-        path.bright-2 {
-            animation-delay: 400ms !important;
-        }
-        path.bright-3 {
-            animation-delay: 200ms !important;
-        }
-    }
-    @keyframes grow-in-out { 
+        @keyframes grow-in-out { 
             0% {
                 transform: scale(1);
             }
@@ -186,16 +178,23 @@
             100% {
                 transform: scale(1);
             }
-    }
-    @keyframes blink {
-        0% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
         }
     }
+    // section#our-mission.float {
+    //     path.bright {
+    //         animation-delay: 500ms;
+    //         animation: float 1400ms cubic-bezier(0.25, 0.06, 0.5, 1) infinite forwards;
+    //     }
+    //     @keyframes float {
+    //         0% {
+    //             transform: translateY(0px);
+    //         }
+    //         50% {
+    //             transform: translateY(20px);
+    //         }
+    //         100% {
+    //             transform: translateY(0px);
+    //         }
+    //     }
+    // }
 </style>
