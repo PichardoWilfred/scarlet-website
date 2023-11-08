@@ -73,17 +73,15 @@ svg.prisma.nav {
     @keyframes prisma-slide-from-bottom {
         from {
             opacity: 0;
-            transform: translateY(50%);
+            transform: translateY(8%);
         }
         to {
             opacity: 1;
-            transform: translateY(0%);
+            transform: translateY(4%);
         }
     }
     svg.prisma.float {
         opacity: 1;
-        
-        transform: translateY(4%);
         animation: float 5s cubic-bezier(.26,.06, 0, .21) infinite;
     }
 }
