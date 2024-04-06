@@ -9,9 +9,24 @@ import Contact from '../components/sections/Contact.astro';
 import Footer from '../components/sections/Footer.astro';
 import '../libs.ts';
 
+import { Schema } from "astro-seo-schema"
 ---
 <script>
 </script>
+<Schema
+item={
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		name: "Scarlet Marketing Analytics",
+		alternateName: "Scarlet",
+		alumniOf: {
+			"@type": "CollegeOrUniversity",
+			name: ["Yale University", "Vassar College"],
+		},
+		knowsAbout: ["Analytics & Reporting", "Website Design & Development", "Content Creation & Distribution", "Pay-Per-Click Advertising", "Social Media Marketing", "Content Writing"],
+	}}
+/>
 <Layout title="Scarlet Marketing Analytics">
 	<main class="text-white font-epilogue bg-black">
 		<Portrait />

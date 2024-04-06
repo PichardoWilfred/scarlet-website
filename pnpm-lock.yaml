@@ -35,6 +35,9 @@ dependencies:
   astro-icon:
     specifier: ^0.8.1
     version: 0.8.1
+  astro-seo-schema:
+    specifier: ^4.0.0
+    version: 4.0.0(astro@2.8.2)(schema-dts@1.1.2)
   emailjs-com:
     specifier: ^3.2.0
     version: 3.2.0
@@ -47,6 +50,9 @@ dependencies:
   react-simple-typewriter:
     specifier: ^5.0.1
     version: 5.0.1(react-dom@18.2.0)(react@18.2.0)
+  schema-dts:
+    specifier: ^1.1.2
+    version: 1.1.2
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -1354,6 +1360,16 @@ packages:
       node-fetch: 3.3.2
       resolve-pkg: 2.0.0
       svgo: 2.8.0
+    dev: false
+
+  /astro-seo-schema@4.0.0(astro@2.8.2)(schema-dts@1.1.2):
+    resolution: {integrity: sha512-ZcpxuQWSlyOVru+sN5LwUHqfrQpOEyv6Ksxq6WBNhycEHE0AEgGdiHkfhAmQbVqT4HXM8bmZOZlYlwwsYkfPAw==}
+    peerDependencies:
+      astro: ^4.0.0
+      schema-dts: ^1.1.0
+    dependencies:
+      astro: 2.8.2(sass@1.65.1)
+      schema-dts: 1.1.2
     dev: false
 
   /astro@2.8.2(sass@1.65.1):
@@ -3692,6 +3708,12 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
+
+  /schema-dts@1.1.2:
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
     dev: false
 
   /section-matter@1.0.0:
